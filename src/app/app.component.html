@@ -1,5 +1,5 @@
 <nav class="w-screen h-35 flex flex-col fixed shadow-lg z-10">
-    <div class="w-full h-8 bg-primary flex items-center px-[10rem] justify-end">
+    <div class="hidden lg:flex w-full h-8 bg-primary items-center px-[10rem] justify-end">
       <ul class="w-auto flex gap-5">
         <a href="{{message}}" target="_blank"><img src="assets/images/wsp.png" alt="" class="w-4"></a>
         <a href="https://www.facebook.com/laurelspamed/" target="_blank"><img src="assets/images/face.png" alt="" class="w-4"></a>
@@ -7,14 +7,15 @@
       </ul>
       <img src="assets/images/flag.png" alt="" class="absolute w-28 left-32 top-0">
     </div>
-    <div class="bg-bg w-full h-14 flex items-center px-[10rem] justify-end">
+
+    <div class="bg-bg w-full h-14 items-center px-[10rem] justify-end hidden lg:flex">
       <ul class="w-auto h-8 flex gap-8">
         <li class="flex gap-2 items-center"><img src="assets/images/tarjeta.png" alt="" class="w-4 h-4"><a href="" class="text-primary flex gap-4">319 259 3098</a></li>
         <li class="flex gap-2 items-center"><img src="assets/images/maletin.png" alt="" class="w-4 h-4"><a href="#bono" class="text-primary flex gap-4">Gana un regalo</a></li>
       </ul>
     </div>
-    <div class="w-full h-12 bg-secondary">
-      <ul class="flex gap-20 w-full justify-center items-center h-full">
+    <div class="w-full h-auto lg:h-12 bg-secondary relative pt-12 lg:pt-0">
+      <ul class="flex flex-col lg:flex-row gap-3 lg:gap-20 w-full lg:justify-center lg:items-center h-full px-5 lg:px-0 py-5 lg:py-0" id="menu">
         <li class="cursor-pointer"><a href="#main" class="text-bg">INICIO</a></li>
         <li class="cursor-pointer"><a routerLink="/planes" class="text-bg">PLANES</a></li>
         <li class="cursor-pointer"><a href="#ubication" class="text-bg">UBICACION</a></li>
@@ -22,6 +23,8 @@
         <li class="cursor-pointer"><a routerLink="/politicas_reserva" class="text-bg">POLITICAS</a></li>
         <li class="cursor-pointer"><a href="/galeria" class="text-bg">GALERIA</a></li>
       </ul>
+
+      <a href="javascript:void(0)" (click)="menuToggle()" class="block lg:hidden absolute right-5 top-2"><img src="" alt=""><img src="assets/icons/menu.png" alt="" class="w-7" id="menu_btn"></a>
     </div>
 </nav>
 

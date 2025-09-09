@@ -12,4 +12,11 @@ import { whatsappMsgDefault } from '../pages/planes/const';
 export class AppComponent {
   title = 'medellin-spa';
   message : string = whatsappMsgDefault
+
+  menuToggle(){
+    const main = document.getElementById("menu")
+    const btn = document.getElementById("menu_btn")
+    main?.classList.toggle("hidden")
+    
+  }
 }
