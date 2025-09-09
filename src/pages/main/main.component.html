@@ -1,0 +1,180 @@
+<!-- MAIN -->
+<div class="w-full h-[60rem] flex pt-[8rem]" id="main">
+    <div class="flex flex-col items-center justify-center gap-10 w-[50%] bg-[url('assets/images/init.png')] bg-cover bg-center">
+
+        <img src="assets/images/logo2.png" alt="" class="w-[20rem]">
+        <h6 class="text-bg">Tu refugio de calma y bienestar</h6>
+        <h3 class="text-bg text-[1.5rem] text-center">Explora nuestros servicios de spa y masajes profesionales. 
+        Encuentra el tratamiento perfecto para ti.</h3>
+        <a href="#bono" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150">GANA TU BONO AQUI</a>
+
+    </div>
+    <div class="w-[50%]">
+        <img src="assets/images/main.png" alt="">
+
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!-- PLANES -->
+
+<div class="px-[10rem]">
+   <div class="w-full">
+        <div class="flex gap-3">
+            <img src="assets/images/trebol.png" alt="">
+            <h1 class="text-secondary_dark font-bold text-[2rem]">PLANES</h1>
+        </div>
+        <br>
+        <br>
+        <div class="w-full flex gap-5 justify-center">
+            <div class="bg-[url('assets/images/card1.png')] bg-cover bg-center w-[25rem] h-[25rem] flex flex-col items-center p-5 gap-5">
+                <img src="assets/images/plan1.png" alt="" class="w-[50%] h-[55%]">
+                <h1 class="text-bg font-semibold text-[1.5rem]">INDIVIDUAL</h1>
+                 <a routerLink="/planes" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150 shadow-xl cursor-pointer">CONOCE MAS</a>
+
+            </div>
+
+            <div class="bg-[url('assets/images/card2.png')] bg-cover bg-center w-[25rem] h-[25rem] flex flex-col items-center p-5 gap-5">
+                <img src="assets/images/plan2.png" alt="" class="w-[50%] h-[55%]">
+                <h1 class="text-bg font-semibold text-[1.5rem]">PAREJA</h1>
+                 <a routerLink="/planes" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150 shadow-xl cursor-pointer">CONOCE MAS</a>
+            </div>
+
+            <div class="bg-[url('assets/images/card3.png')] bg-cover bg-center w-[25rem] h-[25rem] flex flex-col items-center p-5 gap-5">
+                <img src="assets/images/plan3.png" alt="" class="w-[50%] h-[55%]">
+                <h1 class="text-bg font-semibold text-[1.5rem]">GRUPO</h1>
+                 <a routerLink="/planes" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150 shadow-xl cursor-pointer">CONOCE MAS</a>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <!-- SERVICIOS -->
+         <div class="flex gap-3">
+            <img src="assets/images/laurel.png" alt="">
+            <h1 class="text-secondary_dark font-bold text-[2rem]">SERVICIOS</h1>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-7 gap-6">
+            <div class="flex flex-col items-center cursor-pointer hover:scale-105 transition-all ease-in duration-150" *ngFor="let service of services">
+                <img src="{{service.route}}" alt="" class="w-12">
+                <h5 class="text-primary_dark">{{service.name}}</h5>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+   </div> 
+
+
+
+
+</div>
+
+<!-- HORARIOS -->
+<div class="w-full h-[40rem] bg-bg flex flex-col items-center" id="schedules">
+    <div class="bg-primary_dark w-full h-10">
+
+    </div>
+    <br>
+    <div class="bg-primary_dark w-full h-[35%] flex justify-center" id="bono">
+        <div class=" flex justify-center w-[45%] h-[60%]">
+            <div class="bg-secondary w-[20%] flex items-center justify-center">
+                <img src="assets/images/reloj.png" alt="">
+            </div>
+            <div class="bg-secondary_dark w-[80%]">
+                <div class="flex justify-around w-full h-full items-center">
+                    <h1 class="text-bg font-semibold">HORARIOS</h1>
+
+                    <div class="flex flex-col">
+                        <h6 class="text-bg">LUNES A DOMINGOS</h6>
+                        <H6 class="text-bg text-[1.2rem] font-semibold">08:00 AM - 9:00PM</H6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="bg-white h-[60%] w-full relative px-[15rem] flex justify-center flex-col">
+        <img src="assets/images/regalo.png" alt="" class="w-[35rem] absolute right-10 top-[-4rem]">
+        <div class="flex flex-col gap-5 mb-5">
+            <h1 class="text-primary_dark">Gift Card</h1>
+            <h1 class="text-primary_dark">¿QUIERES DAR EL MEJOR REGALO?</h1>
+        </div>
+
+        <a href="{{message}}" target="_blank" class="bg-secondary px-10 py-3 w-[20rem] text-bg hover:bg-secondary_dark transition-all ease-in duration-150 text-center">SOLICITALO POR WHATSAPP</a>
+        <img src="assets/images/fondo.png" alt="" class="absolute w-[10%] left-0 ">
+    </div>
+    
+
+</div>
+
+<!-- NUEVA SEDE -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="flex flex-col w-full h-[75rem] gap-5">
+    <div class="flex w-[100%] items-center gap-2">
+        <div class="w-[20%] h-1 bg-primary_dark"></div>
+        <h1 class="text-primary_dark text-[1.5rem]"> NUEVA SEDE MEDELLIN </h1>
+        <div class="w-[64.5%] h-1 bg-secondary"></div>
+    </div>
+
+    <div class="bg-[url('assets/images/nueva_bg.png')] bg-cover bg-center h-[30rem] px-[10rem]">
+        <div class="flex items-center justify-between h-full w-full">
+            <div class="flex gap-20">
+                <div class="flex flex-col items-center gap-3">
+                    <h5 class="text-secondary text-[1.9rem] font-bold">200</h5>
+                    <h2 class="text-bg text-[1.5rem] font-semibold">Seguidores</h2>
+                    <img src="assets/images/face.png" alt="" class="w-20">
+                </div>
+
+                <div class="flex flex-col items-center gap-3">
+                    <h5 class="text-secondary text-[1.9rem] font-bold">200</h5>
+                    <h2 class="text-bg text-[1.5rem] font-semibold">Seguidores</h2>
+                    <img src="assets/images/ig.png" alt="" class="w-20">
+                </div>
+            </div>
+            <a href="" class="bg-primary px-10 py-3 w-[20rem] h-12 text-bg hover:bg-primary_dark transition-all ease-in duration-150 text-center">GALERIA DE IMAGENES</a>
+        </div>
+    </div>
+
+    <div class="flex w-[100%] items-center gap-2" id="ubication">
+        <div class="w-[70%] h-1 bg-primary_dark"></div>
+        <h1 class="text-primary_dark text-[1.5rem]"> UBICACION </h1>
+        <div class="w-[25%] h-1 bg-secondary"></div>
+    </div>
+
+    <div class="w-full h-[500px]">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2352.312185968397!2d-75.60561009517299!3d6.245567567751703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44299c144f6d8f%3A0x2da18c0c4aede019!2zQ3JhLiA4MkEgIyAzN0ItNSwgU2ltw7NuIEJvbMOtdmFyLCBNZWRlbGzDrW4sIExhIEFtw6lyaWNhLCBNZWRlbGzDrW4sIEFudGlvcXVpYSwgQ29sb21iaWE!5e1!3m2!1ses-419!2sbr!4v1757295766306!5m2!1ses-419!2sbr" class="w-full h-[30rem]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+</div>
+
+
+<!-- DIRECCION -->
+ <div class="w-full h-[20rem] bg-primary_dark">
+    <br>
+    <div class="flex w-[100%] items-center gap-2 mb-10">
+        <div class="w-[23%] h-1 bg-bg"></div>
+        <h1 class="text-bg text-[1.5rem]">CONTACTO</h1>
+        <div class="w-[70%] h-1 bg-bg"></div>
+    </div>
+
+    <div class="px-[10rem] flex items-center gap-5">
+        <img src="assets/images/logo_blanco.png" alt="">
+        <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-3"><img src="assets/images/wsp.png" class="w-5" alt=""><span class="text-white">319 259 3098</span></div>
+            <div class="flex items-center gap-3"><img src="assets/images/wsp.png" class="w-5" alt=""><span class="text-white">313 446 7103</span></div>
+            <div class="flex items-center gap-3"><img src="assets/images/ubicacion.png" class="w-5" alt=""><span class="text-white">Carrera 66 No. 97-70 Bogotá, Colombia</span></div>
+        </div>
+    </div>
+ </div>

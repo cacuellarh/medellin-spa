@@ -1,0 +1,75 @@
+[
+    {
+        "route": "assets/icons/aceite.png",
+        "name": "Aceite de cocos"
+    },
+    {
+        "route": "assets/icons/aceites_escenciales.png",
+        "name": "Aceites escensiales"
+    },
+    {
+        "route": "assets/icons/aromaterapia.png",
+        "name": "Aromaterapia"
+    },
+    {
+        "route": "assets/icons/bambu.png",
+        "name": "Bambu"
+    },
+    {
+        "route": "assets/icons/bebida.png",
+        "name": "Bebida fria"
+    },
+    {
+        "route": "assets/icons/botellaVino.png",
+        "name": "Botella de vino"
+    },
+    {
+        "route": "assets/icons/cena.png",
+        "name": "Cena"
+    },
+    {
+        "route": "assets/icons/chocolate.png",
+        "name": "Chocolaterapia"
+    },
+    {
+        "route": "assets/icons/coctel_aceites.png",
+        "name": "Coctel de aceites"
+    },
+    {
+        "route": "assets/icons/detox.png",
+        "name": "Sauna detox"
+    },
+    {
+        "route": "assets/icons/jacuzzi.png",
+        "name": "Jacuzzi"
+    },
+    {
+        "route": "assets/icons/masaje.png",
+        "name": "Masaje corporal"
+    },
+    {
+        "route": "assets/icons/musicoterapia.png",
+        "name": "Musicoterapia"
+    },
+    {
+        "route": "assets/icons/piedras.png",
+        "name": "Piedras volcanicas"
+    },
+    {
+        "route": "assets/icons/queso.png",
+        "name": "Queso"
+    },
+    {
+        "route": "assets/icons/sales.png",
+        "name": "Exfoliacion con sales"
+    },
+    {
+        "route": "assets/icons/sauna.png",
+        "name": "Sauna"
+    },
+    {
+        "route": "assets/icons/tonico.png",
+        "name": "Tonico corporal"
+    }
+    
+]

@@ -1,0 +1,1 @@
+export const whatsappMsgDefault : string = "https://api.whatsapp.com/send/?phone=573104948884&text=Hola+Laurel+Spa.+Necesito+m%C3%A1s+informaci%C3%B3n+sobre+Somos+Laurel+Spa+Medellin+Colombia&type=phone_number&app_absent=0";

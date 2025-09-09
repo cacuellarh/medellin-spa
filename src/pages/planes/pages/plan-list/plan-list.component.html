@@ -1,0 +1,79 @@
+<div class="w-full text-center flex flex-col mb-5 bg-bg py-2">
+    <h1 class="font-messiri text-primary text-[2rem] font-bold">Reserva tu plan </h1>
+  </div>
+  
+  <div class="flex flex-col lg:flex-row gap-16">
+    <!-- MENU CATEGORIAS -->
+    <div class="flex flex-col w-full lg:w-96 overflow-hidden">
+      <div action="" class="flex w-full">
+        <input
+          type="text"
+          placeholder="Buscar plan"
+          class="border-2 px-3 w-full font-jost"
+          [(ngModel)]="filterByPlanName"
+          
+        />
+        <a class="cursor-pointer" (click)="onFilterByPlanName()"><img src="assets/icons/loop.png" class="w-12" alt="" /></a> 
+      </div>
+  
+      <div class="bg-bg w-full p-5">
+        <ul class="w-full">
+          <li class="px-3 py-8 font-jost text-primary font-semibold">
+            CATEGORIA DE PLANES
+          </li>
+          <li
+            class="h-16 font-jost text-primary flex justify-between px-5 cursor-pointer select-none items-center"
+            (click)="selectCategory(CategoryType.Individual)"
+            appElementActive
+          >
+            <a>Individual</a> <small>3</small>
+          </li>
+          <li
+            class="h-16 font-jost text-primary flex justify-between px-5  cursor-pointer select-none items-center"
+            (click)="selectCategory(CategoryType.Couple)"
+            appElementActive
+          >
+            <a>Pareja</a> <small>8</small>
+          </li>
+          <li
+            class="h-16 font-jost text-primary flex justify-between px-5  cursor-pointer select-none items-center"
+            (click)="selectCategory(CategoryType.Group)"
+            appElementActive
+          >
+            <a>Grupal</a> <small>2</small>
+          </li>
+        </ul>
+  
+        <hr class="bg-gray-300 h-[0.1rem]" />
+        <br>
+        <div class="flex justify-between px-5">
+          <h1 class="font-jost text-primary font-bold">Filtrar</h1>
+          <img src="assets/icons/filtrar.png" class="w-7 cursor-pointer" alt="" (click)="openFilterForm()">
+        </div>
+
+        <app-filter-plan-form 
+          *ngIf="filterStatus === ElementStatustype.SHOW"
+          (onSubmitForm)="filterPlans($event)"
+        ></app-filter-plan-form>
+      </div>
+    </div>
+    <!-- ELEMENTOS -->
+    @if(categorySelected === CategoryType.None){
+    <div class="w-full px-10 flex gap-3 justify-center">
+      <img src="assets/icons/precaucion.png" class="w-[2rem] h-[2rem]" alt="" />
+      <h1 class="font-jost text-secondary text-[1.5rem]">
+        Por favor seleccione una categoria de plan
+      </h1>
+    </div>
+    } @else {
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full h-auto gap-12 place-items-center lg:place-content-start">
+      <app-plan-card
+        [imgPath]="plan.imgPath"
+        [name]="plan.name"
+        [plan]="plan"
+        *ngFor="let plan of plans"
+      ></app-plan-card>
+    </div>
+  
+    }
+  </div>

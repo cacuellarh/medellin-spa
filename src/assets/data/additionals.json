@@ -1,0 +1,227 @@
+[
+    {
+        "id": 101,
+        "iconPath": "/assets/icons/sauna.png",
+        "name": "Jacuzzi espumoso"
+      },
+      {
+        "id": 102,
+        "iconPath": "/assets/icons/tonico.png",
+        "name": "Tonico de rosalia"
+      },
+      {
+        "id": 103,
+        "iconPath": "/assets/icons/masaje.png",
+        "name": "Masaje relajante"
+      },
+      {
+        "id": 104,
+        "iconPath": "/assets/icons/aceites_escenciales.png",
+        "name": "Coctel de aceites"
+      },
+      {
+        "id": 105,
+        "iconPath": "/assets/icons/piedras.png",
+        "name": "Piedras volcanicas"
+      },
+      {
+        "id": 106,
+        "iconPath": "/assets/icons/musicoterapia.png",
+        "name": "Musicoterapia"
+      },
+      {
+        "id": 107,
+        "iconPath": "/assets/icons/piedras.png",
+        "name": "Gemas frias"
+      },
+      {
+        "id": 108,
+        "iconPath": "/assets/icons/vino.png",
+        "name": "Copa de vino para cada uno"
+      },
+      {
+        "id": 109,
+        "iconPath": "/assets/icons/aromaterapia.png",
+        "name": "Aromaterapia"
+      },
+      {
+        "id": 110,
+        "iconPath": "/assets/icons/bambu.png",
+        "name": "Bambuterapia"
+      },
+      {
+        "id": 111,
+        "iconPath": "/assets/icons/aceite.png",
+        "name": "Cocoterapia"
+      },
+      {
+        "id": 112,
+        "iconPath": "/assets/icons/aceites_escenciales.png",
+        "name": "Aceites escenciales"
+      },
+      {
+        "id": 113,
+        "iconPath": "/assets/icons/sales.png",
+        "name": "Exfoliacion con sales"
+      },
+      {
+        "id": 114,
+        "iconPath": "/assets/icons/masaje.png",
+        "name": "Masaje terapeutico"
+      },
+      {
+        "id": 115,
+        "iconPath": "/assets/icons/chocolate.png",
+        "name": "Chocolaterapia"
+      },
+      {
+        "id": 116,
+        "iconPath": "/assets/icons/coctel_aceites.png",
+        "name": "Coctel de aceites"
+      },
+      {
+        "id": 117,
+        "iconPath": "/assets/icons/yoga.png",
+        "name": "Yoga facial"
+      },
+      {
+        "id": 118,
+        "iconPath": "/assets/icons/velo.png",
+        "name": "Velo gusano de seda"
+      },
+      {
+        "id": 120,
+        "iconPath": "/assets/icons/vela.png",
+        "name": "Vela caliente cuerpo completo"
+      },
+      {
+        "id": 121,
+        "iconPath": "/assets/icons/vela_colageno.png",
+        "name": "Vela de colageno"
+      },
+      {
+        "id": 122,
+        "iconPath": "/assets/icons/tonico.png",
+        "name": "Tonico de rosas"
+      },
+      {
+        "id": 123,
+        "iconPath": "/assets/icons/sauna.png",
+        "name": "Jacuzzi hidroterapia"
+      },
+      {
+        "id": 124,
+        "iconPath": "/assets/icons/bebida.png",
+        "name": "Bebida caliente o fria"
+      },
+      {
+        "id": 125,
+        "iconPath": "/assets/icons/manos_seda.png",
+        "name": "Manos de seda"
+      },
+      {
+        "id": 126,
+        "iconPath": "/assets/icons/tonico.png",
+        "name": "Tonico neroli"
+      },
+      {
+        "id": 127,
+        "iconPath": "/assets/icons/aceite.png",
+        "name": "Fino coctel de aceites"
+      },
+      {
+        "id": 128,
+        "iconPath": "/assets/icons/vino.png",
+        "name": "2 Copas de vino"
+      },
+      {
+        "id": 129,
+        "iconPath": "/assets/icons/sales.png",
+        "name": "Reflexologia"
+      },
+      {
+        "id": 130,
+        "iconPath": "/assets/icons/vela_colageno.png",
+        "name": "Velo de colageno"
+      },
+      {
+        "id": 131,
+        "iconPath": "/assets/icons/tonico.png",
+        "name": "Tonico estimulante"
+      },
+      {
+        "id": 132,
+        "iconPath": "/assets/icons/vino.png",
+        "name": "3 Copas de vino"
+      },
+      {
+        "id": 133,
+        "iconPath": "/assets/icons/vino.png",
+        "name": "4 Copas de vino"
+      },
+      {
+        "id": 134,
+        "iconPath": "/assets/icons/detox.png",
+        "name": "Sauna detox"
+      },
+      {
+        "id": 135,
+        "iconPath": "/assets/icons/cena.png",
+        "name": "Cena romantica"
+      },
+      {
+        "id": 136,
+        "iconPath": "/assets/icons/queso.png",
+        "name": "Tabla de quesos"
+      },
+      {
+        "id": 137,
+        "iconPath": "/assets/icons/chocolate.png",
+        "name": "Mascarilla de chocolate"
+      },
+      {
+        "id": 138,
+        "iconPath": "/assets/icons/masaje.png",
+        "name": "Exfoliacion corporal"
+      },
+      {
+        "id": 139,
+        "iconPath": "/assets/icons/tonico.png",
+        "name": "Tonico corporal"
+      },
+      {
+        "id": 140,
+        "iconPath": "/assets/icons/botellaVino.png",
+        "name": "Media botella de vino"
+      },
+      {
+        "id": 141,
+        "iconPath": "/assets/icons/vino.png",
+        "name": "1 Copa de vino"
+      },
+      {
+        "id": 142,
+        "iconPath": "/assets/icons/velo.png",
+        "name": "Velo de perla"
+      },
+      {
+        "id": 143,
+        "iconPath": "/assets/icons/aceite.png",
+        "name": "Coctel de 15 aceites"
+      },
+      {
+        "id": 144,
+        "iconPath": "/assets/icons/sales.png",
+        "name": "Cañas de corozo"
+      },
+      {
+        "id": 143,
+        "iconPath": "/assets/icons/masaje.png",
+        "name": "Masaje terapeutico y descontracturante"
+      },
+      {
+        "id": 144,
+        "iconPath": "/assets/icons/masaje.png",
+        "name": "Masaje estimulante"
+      }
+]

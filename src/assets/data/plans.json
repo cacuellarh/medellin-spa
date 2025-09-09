@@ -1,0 +1,123 @@
+[
+    {
+        "id": 1,
+        "description": "Descubre un refugio de tranquilidad y romance en nuestro exclusivo spa para parejas. Imagina un lugar donde tú y tu pareja pueden escapar del estrés cotidiano y sumergirse en un mundo de relajación total.",
+        "duration": "2 HoraS 20 minutos",
+        "price": 229900,
+        "name": "PLAN GARDENIA",
+        "cuantity": 2,
+        "imgPath": "/assets/images/8.jpeg",
+        "category": 1,
+        "additionalServicesId": [101,105,117,122,130,120,114,107,109,113,106, 141]
+    },
+    {
+        "id": 2,
+        "description": "Delicadeza, belleza y armonía se unen en este plan inspirado en la rosa. Ideal para quienes desean mimarse o celebrar un momento especial con un toque romántico. Déjate envolver por aromas florales y sensaciones suaves que reconectan con lo femenino y lo emocional.",
+        "duration": "2 HoraS 10 minutos",
+        "price": 209900,
+        "name": "PLAN CAMELIA",
+        "cuantity": 2,
+        "imgPath": "/assets/images/10.jpeg",
+        "category": 1,
+        "additionalServicesId": [101,105,117,143,118,131,114,106,107,113,109,137,141]
+    },
+    {
+        "id": 3,
+        "description": "Este plan ofrece una experiencia profundamente calmante, perfecta para quienes buscan descanso físico y emocional. Inspirado en las propiedades relajantes de la malva, proporciona suavidad a tu piel y serenidad a tu alma, envolviéndote en un entorno de paz total..",
+        "duration": "1 Hora 50 Minutos",
+        "price": 169900,
+        "name": "PLAN HORTENSIA",
+        "cuantity": 2,
+        "imgPath": "/assets/images/9.jpeg",
+        "category": 1,
+        "additionalServicesId": [101,105, 110,116,102,137,114,106,109,141]
+    },
+    {
+        "id": 4,
+        "description": "Déjate llevar por el aroma seductor del jazmín en un viaje de relajación y alegría. Este plan es perfecto para elevar tu estado de ánimo, suavizar tensiones y vivir una experiencia sensorial romántica y floral, ideal para compartir en pareja o disfrutar en solitario.",
+        "duration": "2 Horas 30 minutos",
+        "price": 149900,
+        "name": "PLAN JAZMIN",
+        "cuantity": 2,
+        "imgPath": "/assets/images/2.jpeg",
+        "category": 0,
+        "additionalServicesId": [101, 105, 109, 116, 106,137,103,124,142,122,117, 141]
+    },
+    {
+        "id": 5,
+        "description": "Renueva tu energía con este plan inspirado en la piedra de la espiritualidad. Diseñado para equilibrar tus emociones y aliviar el estrés acumulado, es ideal para quienes desean reconectar con su esencia interior en un ambiente cálido y lleno de intención.",
+        "duration": "1 Hora 30 minutos",
+        "price": 119900,
+        "name": "PLAN AZUCENA",
+        "cuantity": 2,
+        "imgPath": "/assets/images/12.jpeg",
+        "category": 1,
+        "additionalServicesId": [134,105, 116, 139, 106, 107,114,109, 141]
+    },
+    {
+        "id": 6,
+        "description": "Inspirado en la flor del naranjo, este plan brinda un equilibrio entre frescura y dulzura. Ideal para quienes necesitan un momento de renovación emocional, con beneficios que calman la ansiedad y despiertan una sensación de bienestar profundo.",
+        "duration": "1 Hora 30 minutos",
+        "price": 139900,
+        "name": "PLAN MAGNOLIA",
+        "cuantity": 2,
+        "imgPath": "/assets/images/11.jpeg",
+        "category": 1,
+        "additionalServicesId": [101,105,111,112,106,113,103,109,141 ]
+    },
+    {
+        "id": 7,
+        "description": "Sumérgete en una experiencia tropical de relajación profunda. El plan Hawai está inspirado en los paisajes exóticos y la energía vibrante de las islas del Pacífico. Vive un momento de escape total, donde el cuerpo se libera del estrés y la mente se llena de paz y frescura.",
+        "duration": "1 Hora 10 Minutos",
+        "price": 109900,
+        "name": "PLAN ROSA",
+        "cuantity": 1,
+        "imgPath": "/assets/images/3.jpeg",
+        "category": 0,
+        "additionalServicesId": [101, 105, 109, 116, 106, 103,113,107, 141]
+    },
+    {
+        "id": 8,
+        "description": "Descubre el alma de África con este plan lleno de sensaciones cálidas, aromas intensos y conexión profunda con tu bienestar interior. Rwanda te invita a experimentar una travesía sensorial que despierta el cuerpo y calma el espíritu, en un entorno de calidez y armonía.",
+        "duration": "45 Minutos",
+        "price": 79900,
+        "name": "PLAN LAVANDA",
+        "cuantity": 1,
+        "imgPath": "/assets/images/4.jpeg",
+        "category": 0,
+        "additionalServicesId": [101, 103,104, 107, 105, 113,106,109, 108]
+    },
+    {
+        "id": 10,
+        "description": "Déjate envolver por la energía intensa del granate. Este plan está diseñado para grupos pequeños o experiencias compartidas que despiertan vitalidad, pasión y fuerza interior. Granate 3 combina relajación y conexión en un ambiente cuidadosamente ambientado.",
+        "duration": "2 Horas",
+        "price": 259900,
+        "name": "PLAN FLOR DE LOTTO 3",
+        "cuantity": 3,
+        "imgPath": "/assets/images/1.jpeg",
+        "category": 2,
+        "additionalServicesId": [101,105,113,116,131,115, 131, 106, 109, 121, 107,132]
+    },
+    {
+        "id": 11,
+        "description": "Diseñado para compartir en grupo, el plan Granate 4 ofrece una experiencia completa de relajación y armonía para cuatro personas. Con sesiones que equilibran cuerpo y mente, es perfecto para celebrar momentos especiales o simplemente disfrutar con quienes más quieres.",
+        "duration": "2 Horas",
+        "price": 359900,
+        "name": "PLAN FLOR DE LOTTO 4",
+        "cuantity": 4,
+        "imgPath": "/assets/images/14.jpeg",
+        "category": 2,
+        "additionalServicesId": [101,105, 113,116,131,115, 144, 106,109,121,107, 133]
+    },
+    {
+        "id": 13,
+        "description": "Con una atmósfera delicadamente preparada y tratamientos diseñados para relajar cuerpo y mente, este plan es perfecto para regalarse tiempo de calidad juntos, desconectar del estrés y reconectar con el amor propio y compartido.",
+        "duration": "3 Horas",
+        "price": 329900,
+        "name": "PLAN ORQUIDEA",
+        "cuantity": 2,
+        "imgPath": "/assets/images/7.jpeg",
+        "category": 1,
+        "additionalServicesId": [101,105,137, 134,118,127,117, 126, 144,113,109,143,106, 128]
+    }
+]
