@@ -3,7 +3,8 @@ import { DataService } from './data.service';
 import { SpaService } from './SpaService';
 import { CommonModule } from '@angular/common';
 import { whatsappMsgDefault } from '../planes/const';
-import { RouterLink } from "../../../node_modules/@angular/router/router_module.d-Bx9ArA6K";
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-main',
