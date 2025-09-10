@@ -1,11 +1,11 @@
 [
     {
         "route": "assets/icons/aceite.png",
-        "name": "Aceite de cocos"
+        "name": "Aceite de coco"
     },
     {
         "route": "assets/icons/aceites_escenciales.png",
-        "name": "Aceites escensiales"
+        "name": "Aceites esenciales"
     },
     {
         "route": "assets/icons/aromaterapia.png",
@@ -13,11 +13,11 @@
     },
     {
         "route": "assets/icons/bambu.png",
-        "name": "Bambu"
+        "name": "Bambú"
     },
     {
         "route": "assets/icons/bebida.png",
-        "name": "Bebida fria"
+        "name": "Bebida fría"
     },
     {
         "route": "assets/icons/botellaVino.png",
@@ -33,7 +33,7 @@
     },
     {
         "route": "assets/icons/coctel_aceites.png",
-        "name": "Coctel de aceites"
+        "name": "Cóctel de aceites"
     },
     {
         "route": "assets/icons/detox.png",
@@ -53,15 +53,11 @@
     },
     {
         "route": "assets/icons/piedras.png",
-        "name": "Piedras volcanicas"
-    },
-    {
-        "route": "assets/icons/queso.png",
-        "name": "Queso"
+        "name": "Piedras volcánicas"
     },
     {
         "route": "assets/icons/sales.png",
-        "name": "Exfoliacion con sales"
+        "name": "Exfoliación con sales"
     },
     {
         "route": "assets/icons/sauna.png",
@@ -69,7 +65,6 @@
     },
     {
         "route": "assets/icons/tonico.png",
-        "name": "Tonico corporal"
+        "name": "Tónico corporal"
     }
-    
 ]
