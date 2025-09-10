@@ -13,7 +13,7 @@
     },
     {
         "route": "assets/icons/bambu.png",
-        "name": "Bambú"
+        "name": "Bambúterapia"
     },
     {
         "route": "assets/icons/bebida.png",
@@ -21,11 +21,7 @@
     },
     {
         "route": "assets/icons/botellaVino.png",
-        "name": "Botella de vino"
-    },
-    {
-        "route": "assets/icons/cena.png",
-        "name": "Cena"
+        "name": "Copas de vino"
     },
     {
         "route": "assets/icons/chocolate.png",
