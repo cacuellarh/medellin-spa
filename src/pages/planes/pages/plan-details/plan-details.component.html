@@ -20,7 +20,7 @@
         <!-- INFO -->
         <div class="w-full relative px-10 pt-20 pb-5 gap-10 lg:gap-5 flex flex-col">
             <div class="w-full py-1 lg:w-[30%] absolute top-0 left-0 bg-primary text-center shadow-sm">
-                <h1 class="text-bg text-[1.6rem] font-messiri font-bold">{{planDetails?.price}}</h1>
+                <h1 class="text-bg text-[1.6rem] font-messiri font-bold">{{planDetails?.price| currency:'COP$ ':'symbol':'1.0-0'}}</h1>
             </div>
 
             <p class="text-primary font-jost font-normal">

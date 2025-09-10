@@ -9,7 +9,7 @@ import { whatsappMsgDefault } from '../pages/planes/const';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
   title = 'medellin-spa';
   message: string = whatsappMsgDefault;
 
@@ -23,7 +23,4 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
-    this.menuToggle();
-  }
 }

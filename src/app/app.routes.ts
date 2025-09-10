@@ -14,6 +14,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'galeria',
+    loadComponent: () =>
+      import('../pages/galery/galery.component').then(
+        (m) => m.GaleryComponent
+      ),
+  },
+  {
     path: 'planes',
     loadComponent: () =>
       import('../pages/planes/planes.component').then((m) => m.PlanesComponent),
