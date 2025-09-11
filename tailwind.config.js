@@ -15,6 +15,9 @@ module.exports = {
         bg: '#F0FFEF'
       }
     },
+    fontFamily: {
+        sans: ['"Albert Sans"', 'sans-serif'],
+      }
   },
   plugins: [],
 }
