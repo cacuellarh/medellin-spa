@@ -37,7 +37,7 @@ export class PlanListComponent {
   public filterByPlanName: string = '';
   public ElementStatustype = ElementStatusType;
   public filterStatus: ElementStatusType = ElementStatusType.HIDDEN;
-
+  public category : string = "Individual"
   constructor() {
     effect(
       () => (this.filterStatus = this.elementToggle.elementStatusToggle())
@@ -50,6 +50,18 @@ export class PlanListComponent {
   selectCategory(category: CategoryType) {
     this.categorySelected = category;
     this.getPlans(this.categorySelected);
+
+    switch(category){
+      case CategoryType.Individual:
+        this.category = "Individual";
+        break;
+      case CategoryType.Couple:
+        this.category = "Pareja";
+        break;
+      case CategoryType.Group:
+        this.category = "Grupal";
+        break;
+    }
   }
 
   getPlans(category: CategoryType) {
