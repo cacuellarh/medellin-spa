@@ -56,10 +56,6 @@
         "name": "Exfoliación con sales"
     },
     {
-        "route": "assets/icons/sauna.png",
-        "name": "Sauna"
-    },
-    {
         "route": "assets/icons/tonico.png",
         "name": "Tónico corporal"
     }
