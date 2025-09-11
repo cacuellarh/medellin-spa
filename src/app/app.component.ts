@@ -2,10 +2,11 @@ import { Component, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { whatsappMsgDefault } from '../pages/planes/const';
+import { WhatsappApiComponent } from './components/whatsapp-api/whatsapp-api.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink],
+  imports: [RouterOutlet, RouterLink, WhatsappApiComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

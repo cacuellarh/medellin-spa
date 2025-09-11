@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { WhatsappApiComponent } from '../../app/components/whatsapp-api/whatsapp-api.component';
 
 @Component({
   selector: 'app-galery',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, WhatsappApiComponent],
   templateUrl: './galery.component.html',
   styleUrls: ['./galery.component.css'],
 })

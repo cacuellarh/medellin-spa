@@ -4,6 +4,8 @@ import { SpaService } from './SpaService';
 import { CommonModule } from '@angular/common';
 import { whatsappMsgDefault } from '../planes/const';
 import { RouterLink } from '@angular/router';
+import { WhatsappApiComponent } from '../../app/components/whatsapp-api/whatsapp-api.component';
+
 
 
 @Component({
