@@ -38,7 +38,7 @@
         "duration": "2 Horas 30 minutos",
         "price": 149900,
         "name": "PLAN JAZMIN",
-        "cuantity": 2,
+        "cuantity": 1,
         "imgPath": "/assets/images/2.jpeg",
         "category": 0,
         "additionalServicesId": [101, 105, 109, 116, 106,137,103,124,142,122,117, 141]
