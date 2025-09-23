@@ -34,11 +34,12 @@
                 </div>
 
                 <div class="flex flex-col items-center gap-1">
-                    <img src="assets/icons/2personas.png" alt="" class="w-7">
                     @if(planDetails?.cuantity && planDetails?.cuantity! > 1){
+                        <img src="assets/icons/2personas.png" alt="" class="w-7">
                         <small>{{planDetails?.cuantity}} Personas</small>
                     }@else {
-                        <small>Individual</small>
+                        <img src="assets/icons/1persona.png" alt="" class="w-7">
+                        <small>1 persona</small>
                     }
                 </div>
             </div>
