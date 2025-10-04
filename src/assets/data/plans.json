@@ -19,7 +19,7 @@
         "cuantity": 2,
         "imgPath": "/assets/images/10.jpeg",
         "category": 1,
-        "additionalServicesId": [101,105,117,143,118,131,114,106,107,113,109,137,141]
+        "additionalServicesId": [101,105,117,143,131,114,106,107,113,109,137,141, 146]
     },
     {
         "id": 3,
@@ -85,7 +85,7 @@
         "cuantity": 1,
         "imgPath": "/assets/images/4.jpeg",
         "category": 0,
-        "additionalServicesId": [101, 103,104, 107, 105, 113,106,109, 108]
+        "additionalServicesId": [103,104, 107, 105, 113,106,109, 108]
     },
     {
         "id": 10,
@@ -118,6 +118,6 @@
         "cuantity": 2,
         "imgPath": "/assets/images/7.jpeg",
         "category": 1,
-        "additionalServicesId": [101,105,137, 134,118,127,117, 126, 144,113,109,143,106, 128]
+        "additionalServicesId": [101,105,137, 134,127,117, 126, 144,113,109,143,106, 128, 146]
     }
 ]

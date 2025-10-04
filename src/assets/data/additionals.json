@@ -224,4 +224,15 @@
         "iconPath": "/assets/icons/masaje.png",
         "name": "Masaje estimulante"
       }
+      ,
+      {
+        "id": 145,
+        "iconPath": "/assets/icons/vela_colageno.png",
+        "name": "Veloterapia"
+      },
+      {
+        "id": 146,
+        "iconPath": "/assets/icons/yoga.png",
+        "name": "Mascarilla de colageno"
+      }
 ]
