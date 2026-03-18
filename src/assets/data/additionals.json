@@ -234,5 +234,20 @@
         "id": 146,
         "iconPath": "/assets/icons/yoga.png",
         "name": "Mascarilla de colageno"
+      },
+      {
+        "id": 147,
+        "iconPath": "/assets/icons/bambu.png",
+        "name": "Masaje con bambú"
+      },
+      {
+        "id": 148,
+        "iconPath": "/assets/icons/queso.png",
+        "name": "Tabla de quesos y jamon"
+      },
+      {
+        "id": 149,
+        "iconPath": "/assets/icons/sales.png",
+        "name": "Pizarra con mensaje personalizado"
       }
 ]
