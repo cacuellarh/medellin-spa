@@ -1,0 +1,5 @@
+/* Estilos mínimos para el modal (puedes usar Tailwind o ajustar aquí) */
+.modal-img {
+	max-width: 90vw;
+	max-height: 80vh;
+}
