@@ -14,6 +14,7 @@ import { PlanCardComponent } from '../../components/plan-card/plan-card.componen
 import { FilterPlanFormComponent } from '../../components/filter-plan-form/filter-plan-form.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SeoService } from '../../../../app/seo/seo.service';
 @Component({
   selector: 'app-plan-list',
   imports: [
@@ -31,6 +32,7 @@ export class PlanListComponent {
   private planService: PlanService = inject(PlanService);
   private destroyRef: DestroyRef = inject(DestroyRef);
   private elementToggle: ElementToggleService = inject(ElementToggleService);
+  private seo: SeoService = inject(SeoService);
   public plans: PlanDto[] = [];
   public categorySelected: CategoryType = CategoryType.Individual;
   public CategoryType = CategoryType;
@@ -44,6 +46,12 @@ export class PlanListComponent {
     );
   }
   ngOnInit() {
+    this.seo.update({
+      title: 'Planes de spa en Medellín: parejas, individuales y grupales | Laurel Spa',
+      description:
+        'Conoce los planes de Laurel Spa Medellín: experiencias para parejas, individuales y grupales con jacuzzi privado, sauna, masajes y rituales. Precios y reservas por WhatsApp.',
+      path: '/planes',
+    });
     this.getPlans(this.categorySelected);
   }
 

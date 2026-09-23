@@ -27,7 +27,9 @@ No lint or e2e setup exists.
   - `services.json` — icon and name list shown on the main page (`DataService`).
   - To add or change plans or prices, edit these JSON files. No code changes are needed.
 - **All filtering happens on the client** in `PlanService` (`src/pages/planes/services/plan.service.ts`). Each query re-fetches and re-joins the JSON.
-- **Plan details has no ID in the URL.** `PlanCardComponent` stores the selected plan in a signal on `PlanService` (`setPlanDetails`), and `PlanDetailsComponent` reads it. If the signal is empty (deep link, reload), it redirects to `/`.
+- **Plan details live at `/planes/:slug`**, where the slug comes from the plan name via `planSlug()` in `plan.service.ts` (for example `PLAN FLOR DE LOTTO 3` → `plan-flor-de-lotto-3`). `PlanDetailsComponent` loads the plan with `getPlanBySlug`. Unknown slugs redirect to `/planes`. Renaming a plan changes its URL.
+- **SEO:** each page calls `SeoService.update()` (`src/app/seo/seo.service.ts`) in `ngOnInit` to set the title, meta description, canonical URL, and Open Graph/Twitter tags. `SITE_URL` in that file holds the production domain. The business JSON-LD (`DaySpa`: address, hours, phones) is static in `src/index.html`. Plan details add a per-plan `Service` JSON-LD.
+- **Parameterized routes are only prerendered if they are listed** in `prerender-routes.txt` (referenced from `angular.json`). That file and `public/sitemap.xml` are static lists of every page, including one URL per plan. When you add, remove, or rename a plan in `plans.json`, update both.
 - The WhatsApp contact URL (phone and default message) is the single constant `whatsappMsgDefault` in `src/pages/planes/const.ts`. The root nav, the floating button, and plan details all reuse it.
 - `@c-code/c-code-fw` (a third-party package) provides `ElementToggleService` / `ElementActiveDirective`, used in the plan list to show or hide the filter form and mark the active category.
 - Gallery and carousels use `ngx-lightbox`, `ngx-slick-carousel`, and `swiper`.
@@ -36,4 +38,7 @@ No lint or e2e setup exists.
 
 - Code runs on the server during SSR and prerendering. Guard any direct `document`/`window` access with `isPlatformBrowser` (see `AppComponent.menuToggle`).
 - Tailwind theme colors are defined in `tailwind.config.js`: `primary`, `primary_light`, `primary_dark`, `secondary`, `secondary_light`, `secondary_dark`, `bg`. The default font is Albert Sans, loaded in `src/styles.css`. Use these tokens instead of raw hex values.
-- Static images and icons live in `src/assets/` (served at `assets/...`). `public/` holds only the favicon.
+- Static images and icons live in `src/assets/` (served at `assets/...`). `public/` holds the favicon, `robots.txt`, and `sitemap.xml`.
+- Large decorative PNGs are referenced as `.webp` (the original `.png` files are still in the repo). Photos stay `.jpeg` because they double as `og:image` previews.
+- Keep one `<h1>` per page. Tailwind's preflight resets heading sizes, so changing a heading level doesn't change how it looks.
+- The project lives in a OneDrive folder. `UNKNOWN: unknown error, read` build errors come from OneDrive fetching files from the cloud, not from the code. Rerunning the build fixes them.

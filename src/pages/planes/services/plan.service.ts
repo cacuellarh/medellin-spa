@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { PlanDto } from '../dto/plan-dto';
 import { forkJoin, map, Observable } from 'rxjs';
 import { AdditionalServiceDto } from '../dto/AdditionalService-dto';
@@ -12,15 +12,7 @@ import { CategoryType } from '../types/category-type';
 })
 export class PlanService {
   private httpService: HttpClient = inject(HttpClient);
-  private _planDetails = signal<PlanDto | null>(null);
 
-  get planDetails(){
-    return this._planDetails
-  }
-
-  setPlanDetails(plan : PlanDto){
-    this._planDetails.set(plan)
-  }
   getPlans(): Observable<PlanDto[]> {
     return forkJoin({
       plans: this.httpService.get<PlanDto[]>('assets/data/plans.json'),
@@ -69,6 +61,12 @@ export class PlanService {
     );
   }
 
+  getPlanBySlug(slug: string): Observable<PlanDto | undefined> {
+    return this.getPlans().pipe(
+      map((plans) => plans.find((plan) => planSlug(plan.name) === slug))
+    );
+  }
+
   getPlansByName(name: string) {
     return this.getPlans().pipe(
       map((plans) =>
@@ -79,4 +77,15 @@ export class PlanService {
     );
   }
 
+}
+
+/** Convierte el nombre del plan en un texto apto para URL: "PLAN FLOR DE LOTTO 3" -> "plan-flor-de-lotto-3". */
+export function planSlug(name: string): string {
+  return name
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }

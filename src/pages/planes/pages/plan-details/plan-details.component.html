@@ -1,5 +1,5 @@
 <div class="w-full mb-10 py-2 bg-bg flex justify-between items-center px-5">
-    <a routerLink="/planes" class="cursor-pointer hover:scale-125 transition-all ease-in duration-300"><img src="assets/icons/atras.png" class="w-[2rem] h-[2rem]" alt=""></a>
+    <a routerLink="/planes" class="cursor-pointer hover:scale-125 transition-all ease-in duration-300"><img src="assets/icons/atras.png" class="w-[2rem] h-[2rem]" alt="Volver a los planes"></a>
     
     <div class="flex gap-2 justify-center">
         <h1 class="text-primary font-messiri text-[2rem] font-bold">{{planDetails?.name}}</h1>
@@ -12,7 +12,7 @@
 <div class="flex flex-col lg:flex-row gap-28">
 
     <div class="display flex flex-col gap-10">
-        <img src="{{planDetails?.imgPath}}" class="w-[60rem] shadow-lg" alt="">
+        <img src="{{planDetails?.imgPath}}" class="w-[60rem] shadow-lg" alt="{{planDetails?.name}} en Laurel Spa Medellín">
         <!-- <app-social-media></app-social-media> -->
     </div>
 
@@ -20,7 +20,7 @@
         <!-- INFO -->
         <div class="w-full relative px-10 pt-20 pb-5 gap-10 lg:gap-5 flex flex-col">
             <div class="w-full py-1 lg:w-[30%] absolute top-0 left-0 bg-primary text-center shadow-sm">
-                <h1 class="text-bg text-[1.6rem] font-messiri font-bold">{{planDetails?.price| currency:'COP$ ':'symbol':'1.0-0'}}</h1>
+                <p class="text-bg text-[1.6rem] font-messiri font-bold">{{planDetails?.price| currency:'COP$ ':'symbol':'1.0-0'}}</p>
             </div>
 
             <p class="text-primary font-jost font-normal">
@@ -29,22 +29,22 @@
 
             <div class="flex gap-10">
                 <div class="flex flex-col items-center gap-1">
-                    <img src="assets/icons/reloj.png" alt="" class="w-7">
+                    <img src="assets/icons/reloj.png" alt="Duración" class="w-7">
                     <small>{{planDetails?.duration}}</small>
                 </div>
 
                 <div class="flex flex-col items-center gap-1">
                     @if(planDetails?.cuantity && planDetails?.cuantity! > 1){
-                        <img src="assets/icons/2personas.png" alt="" class="w-7">
+                        <img src="assets/icons/2personas.png" alt="Personas" class="w-7">
                         <small>{{planDetails?.cuantity}} Personas</small>
                     }@else {
-                        <img src="assets/icons/1persona.png" alt="" class="w-7">
+                        <img src="assets/icons/1persona.png" alt="Una persona" class="w-7">
                         <small>1 persona</small>
                     }
                 </div>
             </div>
 
-            <h3 class="text-primary font-semibold">Incluye:</h3>
+            <h2 class="text-primary font-semibold">Incluye:</h2>
 
             <div class="grid grid-cols-3 lg:grid-cols-6 gap-4">
                 <div *ngFor="let additional of planDetails?.additionalServices" class="flex flex-col justify-center items-center gap-2">
@@ -54,7 +54,7 @@
             </div>
 
             <div class="w-full flex flex-col lg:flex-row border-2 border-dashed border-secondary_light p-2 lg:p-5 justify-between items-start h-auto gap-5 lg:gap-0 lg:h-[10rem]">
-                <img src="assets/images/regalo.png" alt="" class="w-full lg:w-[10rem]">
+                <img src="assets/images/regalo.webp" alt="Gift card de regalo" class="w-full lg:w-[10rem]" loading="lazy">
 
                 <div class="flex flex-col gap-5 lg:gap-2">
                     <h2 class="font-jost font-semibold text-secondary">Recibe con nuestro plan</h2>

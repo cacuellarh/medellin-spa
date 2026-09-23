@@ -5,7 +5,7 @@
     <h1
       class="font-messiri text-[1.7rem] lg:text-[3rem] font-primary text-center text-primary font-bold"
     >
-      Galería de imágenes
+      Galería de imágenes de Laurel Spa Medellín
     </h1>
   </div>
 
@@ -15,7 +15,7 @@
      w-full p-5 lg:p-10 rounded-sm shadow-md bg-no-repeat"
   >
     <div *ngFor="let album of albums; let i = index" class="cursor-pointer w-28 lg:w-40">
-      <img [src]="album.thumb" [alt]="album.caption" (click)="open(i)" />
+      <img [src]="album.thumb" [alt]="album.caption" (click)="open(i)" loading="lazy" decoding="async" />
     </div>
   </div>
 </div>

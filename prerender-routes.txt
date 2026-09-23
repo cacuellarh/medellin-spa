@@ -1,0 +1,16 @@
+/
+/planes
+/galeria
+/politicas_reserva
+/planes/plan-gardenia
+/planes/plan-camelia
+/planes/plan-hortensia
+/planes/plan-jazmin
+/planes/plan-azucena
+/planes/plan-magnolia
+/planes/plan-rosa
+/planes/plan-lavanda
+/planes/plan-flor-de-lotto-3
+/planes/plan-flor-de-lotto-4
+/planes/plan-orquidea
+/planes/plan-girasol

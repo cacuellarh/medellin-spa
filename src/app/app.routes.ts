@@ -33,7 +33,7 @@ export const routes: Routes = [
           ).then((p) => p.PlanListComponent),
       },
       {
-        path: 'detalles',
+        path: ':slug',
         loadComponent: () =>
           import(
             '../pages/planes/pages/plan-details/plan-details.component'
@@ -41,4 +41,5 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: '**', redirectTo: '' },
 ];
