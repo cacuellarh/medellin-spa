@@ -52,14 +52,11 @@
 <app-whatsapp-api></app-whatsapp-api>
 
 <!-- Modal abierto por defecto: reemplaza la imagen por la que quieras -->
-<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" (click)="closeModal()">
-  <div class="bg-white rounded-lg p-4 max-w-3xl w-11/12" (click)="$event.stopPropagation()">
-    <div class="flex justify-end">
-      <button (click)="closeModal()" class="text-gray-500 hover:text-gray-800">Cerrar ✕</button>
-    </div>
-    <div class="pt-2">
-      <!-- Pon aquí tu imagen (cambia el src o reemplaza este elemento) -->
-      <img src="assets/images/pop.jpeg" alt="Popup image" class="mx-auto max-w-full max-h-[70vh]" />
-    </div>
+<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" (click)="closeModal()">
+  <div class="relative w-fit max-w-[92vw]" (click)="$event.stopPropagation()">
+    <button (click)="closeModal()" aria-label="Cerrar"
+      class="absolute -top-3 -right-3 w-9 h-9 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-lg text-lg leading-none hover:bg-gray-100 hover:scale-110 transition">✕</button>
+    <!-- Pon aquí tu imagen (cambia el src o reemplaza este elemento) -->
+    <img src="assets/images/pop.jpeg" alt="Promoción Laurel Spa" class="block max-w-full max-h-[85vh] rounded-lg shadow-2xl" />
   </div>
 </div>
