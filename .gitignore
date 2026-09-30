@@ -40,3 +40,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Content: generated from Firestore by `npm run content` (c-code-content) before start and build.
+# Edit it in the C-Code CMS, not here.
+/src/assets/data/*.json
