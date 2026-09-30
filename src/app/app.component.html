@@ -1,62 +1,102 @@
-<nav class="w-screen h-35 flex flex-col fixed shadow-lg z-10">
-    <div class="hidden lg:flex w-full h-8 bg-primary items-center px-[10rem] justify-end">
-      <ul class="w-auto flex gap-5">
-        <a href="{{message}}" target="_blank" rel="noopener"><img src="assets/images/wsp.png" alt="WhatsApp de Laurel Spa" class="w-4"></a>
-        <a href="https://www.facebook.com/laurelspamed/" target="_blank" rel="noopener"><img src="assets/images/face.png" alt="Facebook de Laurel Spa" class="w-4"></a>
-        <a href="https://www.instagram.com/laurelspamed/" target="_blank" rel="noopener"><img src="assets/images/ig.png" alt="Instagram de Laurel Spa" class="w-4"></a>
-      </ul>
-      <img (click)="toMain()" src="assets/images/flag.png" alt="Laurel Spa Medellín - inicio" class="absolute w-28 left-32 top-0 z-10 cursor-pointer transition-all ease-in duration-150 hover:scale-110">
+<a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:bg-white focus:px-4 focus:py-2">Saltar al contenido</a>
+
+<header class="fixed inset-x-0 top-0 z-40 bg-white shadow-md">
+  <!-- Barra superior: horario, teléfono y redes (escritorio) -->
+  <div class="hidden bg-primary_dark text-bg lg:block">
+    <div class="mx-auto flex h-10 max-w-site items-center justify-between px-8 text-sm">
+      <p>{{ contact.hoursShort }}</p>
+      <div class="flex items-center gap-4">
+        <a [href]="whatsappUrl" target="_blank" rel="noopener" class="font-semibold hover:underline">
+          WhatsApp {{ contact.phones[0].label }}
+        </a>
+        <cc-social-links [links]="socialLinks" size="sm" tone="inverse" />
+      </div>
     </div>
-
-    <div class="bg-bg w-full h-14 items-center px-[10rem] justify-end hidden lg:flex">
-      <ul class="w-auto h-8 flex gap-8">
-        <li class="flex gap-2 items-center"><img src="assets/images/tarjeta.png" alt="" class="w-4 h-4"><a href="{{message}}" target="_blank" rel="noopener" class="text-primary flex gap-4">3104948884</a></li>
-        <li class="flex gap-2 items-center"><img src="assets/images/maletin.png" alt="" class="w-4 h-4"><a routerLink="/" fragment="bono" class="text-primary flex gap-4">Obten un bono</a></li>
-      </ul>
-    </div>
-    <!-- DESKTOP -->
-    <div class="w-full h-auto lg:h-12 bg-secondary relative pt-12 lg:pt-0 hidden lg:flex">
-      <ul class="flex flex-col lg:flex-row gap-3 lg:gap-20 w-full lg:justify-center lg:items-center h-full px-5 lg:px-0 py-5 lg:py-0">
-        <li class="cursor-pointer"><a routerLink="/" class="text-bg">INICIO</a></li>
-        <li class="cursor-pointer"><a routerLink="/planes" class="text-bg">PLANES</a></li>
-        <li class="cursor-pointer"><a routerLink="/" fragment="ubication" class="text-bg">UBICACION</a></li>
-        <li class="cursor-pointer"><a routerLink="/" fragment="schedules" class="text-bg">HORARIOS</a></li>
-        <li class="cursor-pointer"><a routerLink="/politicas_reserva" class="text-bg">POLITICAS</a></li>
-        <li class="cursor-pointer" ><a routerLink="/galeria" class="text-bg">GALERIA</a></li>
-      </ul>
-
-      <a href="javascript:void(0)" (click)="menuToggle()" class="block lg:hidden absolute right-7 top-2"><img src="assets/icons/menu.png" alt="Abrir menú" class="w-7" id="menu_btn"></a>
-    </div>
-
-    <!-- MOBILE -->
-    <div class="w-full h-auto lg:h-12 bg-secondary relative pt-12 lg:pt-0 lg:hidden">
-      <ul class="flex flex-col lg:flex-row gap-3 lg:gap-20 w-full lg:justify-center lg:items-center h-full px-5 lg:px-0 py-5 lg:py-0 hidden" id="menu">
-        <li class="cursor-pointer" (click)="menuToggle()"><a routerLink="/" class="text-bg">INICIO</a></li>
-        <li class="cursor-pointer" (click)="menuToggle()"><a routerLink="/planes" class="text-bg">PLANES</a></li>
-        <li class="cursor-pointer" (click)="menuToggle()"><a routerLink="/" fragment="ubication" class="text-bg">UBICACION</a></li>
-        <li class="cursor-pointer" (click)="menuToggle()"><a routerLink="/" fragment="schedules" class="text-bg">HORARIOS</a></li>
-        <li class="cursor-pointer" (click)="menuToggle()"><a routerLink="/politicas_reserva" class="text-bg">POLITICAS</a></li>
-        <li class="cursor-pointer" (click)="menuToggle()"><a routerLink="/galeria" class="text-bg">GALERIA</a></li>
-      </ul>
-
-      <a href="javascript:void(0)" (click)="menuToggle()" class="block lg:hidden absolute right-7 top-2"><img src="assets/icons/menu.png" alt="Abrir menú" class="w-7" id="menu_btn"></a>
-    </div>
-
-    
-</nav>
-
-<div> 
-  <router-outlet />
-</div>
-
-<app-whatsapp-api></app-whatsapp-api>
-
-<!-- Modal abierto por defecto: reemplaza la imagen por la que quieras -->
-<div *ngIf="showModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" (click)="closeModal()">
-  <div class="relative w-fit max-w-[92vw]" (click)="$event.stopPropagation()">
-    <button (click)="closeModal()" aria-label="Cerrar"
-      class="absolute -top-3 -right-3 w-9 h-9 flex items-center justify-center rounded-full bg-white text-gray-700 shadow-lg text-lg leading-none hover:bg-gray-100 hover:scale-110 transition">✕</button>
-    <!-- Pon aquí tu imagen (cambia el src o reemplaza este elemento) -->
-    <img src="assets/images/pop.jpeg" alt="Promoción Laurel Spa" class="block max-w-full max-h-[85vh] rounded-lg shadow-2xl" />
   </div>
-</div>
+
+  <!-- Barra principal -->
+  <div class="mx-auto flex h-16 max-w-site items-center justify-between gap-4 px-4 lg:h-20 lg:px-8">
+    <a routerLink="/" class="flex items-center" (click)="closeMenu()">
+      <img src="assets/images/flag.png" alt="Laurel Spa Medellín - inicio" width="160" height="159" class="h-12 w-auto lg:h-16" />
+    </a>
+
+    <nav class="hidden lg:block" aria-label="Principal">
+      <ul class="flex items-center gap-8">
+        @for (link of navLinks; track link.label) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              [fragment]="link.fragment"
+              routerLinkActive="text-secondary_text underline decoration-2 underline-offset-8"
+              [routerLinkActiveOptions]="link.exact ? exactMatch : prefixMatch"
+              class="font-semibold text-primary transition-colors hover:text-secondary_text"
+            >{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a ccButton size="sm" [href]="whatsappUrl" target="_blank" rel="noopener">Reservar</a>
+      <button
+        type="button"
+        class="flex h-11 w-11 items-center justify-center rounded-full text-primary hover:bg-secondary_light lg:hidden"
+        aria-controls="menu-movil"
+        [attr.aria-expanded]="menuOpen()"
+        [attr.aria-label]="menuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+        (click)="toggleMenu()"
+      >
+        @if (menuOpen()) {
+          <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        } @else {
+          <svg viewBox="0 0 24 24" class="h-6 w-6" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Menú móvil -->
+  @if (menuOpen()) {
+    <nav id="menu-movil" class="border-t border-stone bg-white lg:hidden" aria-label="Principal">
+      <ul class="flex flex-col px-4 py-2">
+        @for (link of navLinks; track link.label) {
+          <li>
+            <a
+              [routerLink]="link.path"
+              [fragment]="link.fragment"
+              routerLinkActive="text-secondary_text"
+              [routerLinkActiveOptions]="link.exact ? exactMatch : prefixMatch"
+              class="block py-3 text-lg font-semibold text-primary"
+              (click)="closeMenu()"
+            >{{ link.label }}</a>
+          </li>
+        }
+      </ul>
+      <div class="border-t border-stone px-4 py-3">
+        <a [href]="whatsappUrl" target="_blank" rel="noopener" class="inline-flex min-h-11 items-center font-semibold text-primary">WhatsApp {{ contact.phones[0].label }}</a>
+      </div>
+    </nav>
+  }
+</header>
+
+<main id="contenido" class="pt-16 lg:pt-[7.5rem]">
+  <router-outlet />
+</main>
+
+<app-site-footer />
+
+@if (showFloatingWhatsapp()) {
+  <cc-whatsapp-button [href]="whatsappUrl" label="Escríbenos por WhatsApp" />
+}
+
+<!-- Popup de promoción: se abre a los 6 s y no vuelve a aparecer en 7 días si se cierra. -->
+<cc-promo-modal
+  [autoOpen]="true"
+  [delayMs]="6000"
+  [rememberKey]="promo.rememberKey"
+  [imageSrc]="promo.imageSrc"
+  [imageAlt]="promo.imageAlt"
+  [link]="promo.whatsappUrl"
+  ctaLabel="Quiero esta promoción"
+  [ctaHref]="promo.whatsappUrl"
+/>

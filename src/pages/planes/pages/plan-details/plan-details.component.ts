@@ -1,36 +1,40 @@
 import { Component, DestroyRef, inject } from '@angular/core';
-import { planSlug, PlanService } from '../../services/plan.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { whatsappMsgDefault } from '../../const';
-import { PlanDto } from '../../dto/plan-dto';
-import { CommonModule, DOCUMENT } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { SeoService, SITE_URL } from '../../../../app/seo/seo.service';
+import {
+  Plan,
+  PlanCatalogService,
+  PlanDetailsComponent as CcPlanDetailsComponent,
+  planSlug,
+  SeoService,
+  titleCase,
+  truncateText,
+} from '@c-code/c-code-fw/ui';
+import { planWhatsappUrl } from '../../../../app/site.config';
 
 const JSON_LD_ID = 'plan-json-ld';
 
 @Component({
   selector: 'app-plan-details',
-  imports: [CommonModule, RouterLink],
+  imports: [CcPlanDetailsComponent],
   templateUrl: './plan-details.component.html',
-  styleUrl: './plan-details.component.css'
 })
 export class PlanDetailsComponent {
+  private catalog = inject(PlanCatalogService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+  private seo = inject(SeoService);
+  private destroyRef = inject(DestroyRef);
 
-  private planService:PlanService = inject(PlanService);
-  private router:Router = inject(Router);
-  private route:ActivatedRoute = inject(ActivatedRoute);
-  private seo:SeoService = inject(SeoService);
-  private document:Document = inject(DOCUMENT);
-  private destroyRef:DestroyRef = inject(DestroyRef);
-  public msg : string = whatsappMsgDefault
+  /** WhatsApp con el nombre y el precio del plan en el mensaje. */
+  public bookingUrl = planWhatsappUrl;
+  public planDetails: Plan | null = null;
 
-  public planDetails : PlanDto | null = null
-  ngOnInit(){
+  ngOnInit() {
     this.route.paramMap
       .pipe(
-        switchMap((params) => this.planService.getPlanBySlug(params.get('slug') ?? '')),
+        switchMap((params) => this.catalog.getPlanBySlug(params.get('slug') ?? '')),
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe((plan) => {
@@ -42,55 +46,37 @@ export class PlanDetailsComponent {
         this.updateSeo(plan);
       });
 
-    this.destroyRef.onDestroy(() => this.document.getElementById(JSON_LD_ID)?.remove());
+    this.destroyRef.onDestroy(() => this.seo.removeJsonLd(JSON_LD_ID));
   }
 
-  private updateSeo(plan: PlanDto) {
-    const name = this.titleCase(plan.name);
+  private updateSeo(plan: Plan) {
+    const name = titleCase(plan.name);
     const price = plan.price.toLocaleString('es-CO');
-    const path = '/planes/' + planSlug(plan.name);
+    const path = '/planes/' + planSlug(plan);
 
     this.seo.update({
       title: `${name} – Spa en Medellín desde $${price} | Laurel Spa`,
-      description: this.shorten(`${name} (${plan.duration.toLowerCase()}, ${plan.cuantity} ${plan.cuantity > 1 ? 'personas' : 'persona'}, $${price} COP). ${plan.description}`),
+      description: truncateText(`${name} (${plan.duration.toLowerCase()}, ${plan.cuantity} ${plan.cuantity > 1 ? 'personas' : 'persona'}, $${price} COP). ${plan.description}`),
       path,
       image: plan.imgPath,
     });
 
-    const jsonLd = {
+    this.seo.setJsonLd(JSON_LD_ID, {
       '@context': 'https://schema.org',
       '@type': 'Service',
       name,
       description: plan.description,
-      image: SITE_URL + plan.imgPath,
-      url: SITE_URL + path,
+      image: this.seo.absoluteUrl(plan.imgPath),
+      url: this.seo.absoluteUrl(path),
       serviceType: 'Spa',
       areaServed: 'Medellín',
-      provider: { '@id': SITE_URL + '/#spa' },
+      provider: { '@id': this.seo.absoluteUrl('/#spa') },
       offers: {
         '@type': 'Offer',
         price: plan.price,
         priceCurrency: 'COP',
         availability: 'https://schema.org/InStock',
       },
-    };
-
-    let script = this.document.getElementById(JSON_LD_ID);
-    if (!script) {
-      script = this.document.createElement('script');
-      script.id = JSON_LD_ID;
-      script.setAttribute('type', 'application/ld+json');
-      this.document.head.appendChild(script);
-    }
-    script.textContent = JSON.stringify(jsonLd);
-  }
-
-  private titleCase(text: string): string {
-    return text.toLowerCase().replace(/(^|\s)\S/g, (c) => c.toUpperCase());
-  }
-
-  private shorten(text: string, max = 160): string {
-    if (text.length <= max) return text;
-    return text.slice(0, text.lastIndexOf(' ', max - 1)) + '…';
+    });
   }
 }

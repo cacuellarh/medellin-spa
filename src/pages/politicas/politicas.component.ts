@@ -1,16 +1,36 @@
 import { Component, inject } from '@angular/core';
-import { ItemInfoComponent } from './item-info/item-info.component';
-import { SeoService } from '../../app/seo/seo.service';
+import { RouterLink } from '@angular/router';
+import { InfoItemComponent, NoticeComponent, PageBannerComponent, SeoService, whatsappUrl } from '@c-code/c-code-fw/ui';
+import { CONTACT } from '../../app/site.config';
+
+/** Índice de la página: id del ancla y título de cada sección. */
+const SECTIONS = [
+  { id: 'protocolo', title: 'Política y protocolo del spa' },
+  { id: 'reservaciones', title: 'Reservaciones' },
+  { id: 'bonos', title: 'Bonos Spa' },
+  { id: 'factura', title: 'Factura' },
+  { id: 'salud', title: 'Estado de salud' },
+  { id: 'llegadas-tarde', title: 'Llegadas tarde' },
+  { id: 'cancelacion', title: 'Cancelación y reagendamiento' },
+  { id: 'devoluciones', title: 'Devoluciones' },
+  { id: 'higiene', title: 'Higiene' },
+  { id: 'pagos', title: 'Pagos' },
+  { id: 'precios', title: 'Precios' },
+  { id: 'protocolos', title: 'Protocolos del spa' },
+];
 
 @Component({
   selector: 'app-politicas',
-  imports: [ItemInfoComponent],
+  imports: [RouterLink, PageBannerComponent, InfoItemComponent, NoticeComponent],
   templateUrl: './politicas.component.html',
-  styleUrl: './politicas.component.css',
   standalone: true
 })
 export class PoliticasComponent {
   private seo: SeoService = inject(SeoService);
+
+  readonly sections = SECTIONS;
+  readonly contact = CONTACT;
+  readonly whatsapp = (phone: string) => whatsappUrl(phone);
 
   ngOnInit() {
     this.seo.update({

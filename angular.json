@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/@c-code/c-code-fw/ui/theme/tokens.css",
               "src/styles.css"
             ],
             "scripts": [],
@@ -94,6 +95,7 @@
               }
             ],
             "styles": [
+              "node_modules/@c-code/c-code-fw/ui/theme/tokens.css",
               "src/styles.css"
             ],
             "scripts": []

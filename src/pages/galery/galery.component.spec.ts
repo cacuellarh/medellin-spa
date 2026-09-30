@@ -1,3 +1,4 @@
+import { TEST_PROVIDERS } from '../../test-providers';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GaleryComponent } from './galery.component';
@@ -8,7 +9,8 @@ describe('GaleryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GaleryComponent]
+      imports: [GaleryComponent],
+      providers: TEST_PROVIDERS,
     })
     .compileComponents();
 

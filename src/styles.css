@@ -1,8 +1,71 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=El+Messiri:wght@500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
+ * Identidad de Laurel Spa. Este archivo es la única fuente de colores y tipografía del sitio:
+ * tailwind.config.js y los componentes de @c-code/c-code-fw/ui leen estas variables.
+ * La escala de tamaños, espaciado y radios viene de la librería (tokens.css, en angular.json).
+ */
+:root {
+    /* Paleta de marca */
+    --laurel-green: #4c6b4a;
+    --laurel-green-light: #a0ba9e;
+    --laurel-green-dark: #022b04;
+    --laurel-gold: #ceab5d;
+    --laurel-gold-dark: #9a7521;
+    --laurel-gold-hover: #bf9a45;
+    --laurel-gold-text: #7a5c17; /* dorado legible como texto: 6,2:1 sobre blanco */
+    --laurel-cream: #f8f4ee;
+    --laurel-mint: #f0ffef;
+    --laurel-white: #ffffff;
+    --laurel-stone: #e7e1d7;
+    --laurel-stone-strong: #8a8480;
+
+    /* Tipografía de marca */
+    --laurel-font-body: 'Albert Sans', sans-serif;
+    --laurel-font-heading: 'El Messiri', 'Albert Sans', sans-serif;
+
+    /* Roles que leen los componentes de la librería */
+    --cc-canvas: var(--laurel-white);
+    --cc-surface: var(--laurel-cream);
+    --cc-surface-alt: var(--laurel-mint);
+    --cc-text: var(--laurel-green);
+    --cc-heading: var(--laurel-green);
+    --cc-accent: var(--laurel-gold);
+    --cc-accent-hover: var(--laurel-gold-hover);
+    --cc-accent-text: var(--laurel-gold-text);
+    --cc-on-accent: var(--laurel-green-dark); /* 7,1:1 sobre el dorado */
+    --cc-inverse: var(--laurel-green);
+    --cc-inverse-hover: var(--laurel-green-dark);
+    --cc-on-inverse: var(--laurel-mint);
+    --cc-border: var(--laurel-stone);
+    --cc-border-strong: var(--laurel-stone-strong);
+    --cc-focus-ring: var(--laurel-green-dark);
+    --cc-font-body: var(--laurel-font-body);
+    --cc-font-heading: var(--laurel-font-heading);
+    --cc-radius: 0.25rem;
+}
+
 html {
     scroll-behavior: smooth;
-    font-family: 'Albert Sans', sans-serif;
+    scroll-padding-top: 6rem;
+    font-family: var(--laurel-font-body);
+    color: var(--laurel-green);
+}
+body {
+    background: var(--laurel-white);
+}
+h1, h2, h3 {
+    font-family: var(--laurel-font-heading);
+}
+:focus-visible {
+    outline: 2px solid var(--cc-focus-ring);
+    outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }

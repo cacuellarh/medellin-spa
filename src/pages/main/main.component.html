@@ -1,240 +1,171 @@
-<!-- MAIN -->
-
-<div class="w-full h-[60rem] flex flex-col lg:flex-row pt-10 lg:pt-[8rem] overflow-hidden" id="main">
-    <div class="lg:w-[50%]">
-        <div class="overflow-hidden ">
-            <img src="assets/images/main.webp" alt="Masaje relajante en Laurel Spa Medellín" class="w-[100%] h-[100%]" fetchpriority="high">
-
-        </div>
-
+<!-- HERO -->
+<section id="main" class="grid lg:min-h-[min(calc(100svh-7.5rem),48rem)] lg:grid-cols-2">
+  <div class="relative aspect-[4/3] lg:aspect-auto">
+    <img src="assets/images/main.webp" alt="Masaje relajante en Laurel Spa Medellín" fetchpriority="high"
+         class="absolute inset-0 h-full w-full object-cover" />
+  </div>
+  <div class="flex flex-col items-center justify-center gap-6 bg-[url('assets/images/init.png')] bg-cover bg-center px-6 py-16 text-center lg:px-16">
+    <img src="assets/images/logo2.png" alt="" width="383" height="205" class="h-auto w-40 lg:w-48" />
+    <h1 class="max-w-xl font-heading text-4xl font-bold text-bg">Spa para parejas en Medellín</h1>
+    <p class="max-w-lg text-lg text-bg">
+      Jacuzzi privado, sauna y masajes profesionales. Tu refugio de calma y bienestar@if (fromPrice()) {, con planes desde {{ fromPrice() }}}.
+    </p>
+    <div class="flex flex-col flex-wrap justify-center gap-3 sm:flex-row">
+      <a ccButton size="lg" class="whitespace-nowrap" routerLink="/planes" [queryParams]="coupleQuery">Ver planes para pareja</a>
+      <a ccButton size="lg" variant="whatsapp" class="whitespace-nowrap" [href]="whatsappUrl" target="_blank" rel="noopener">Reservar por WhatsApp</a>
     </div>
-    <div class="flex px-[1rem] flex-col items-center justify-center gap-5 w-full lg:w-[50%] bg-[url('assets/images/init.png')] bg-cover bg-center py-24">
-
-        <img src="assets/images/logo2.png" alt="Laurel Spa" class="w-[12rem]">
-        <h1 class="text-bg text-center">Spa en Medellín · Tu refugio de calma y bienestar</h1>
-        <p class="text-bg text-[1rem] lg:text-[1.5rem] text-center">Explora nuestros servicios de spa y masajes profesionales. 
-        Encuentra el tratamiento perfecto para ti.</p>
-        <a routerLink="/planes" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150">COMIENZA TU EXPERIENCIA AQUI</a>
-
-    </div>
-</div>
-<br>
-<br>
-<br class="hidden lg:block">
-<br class="hidden lg:block">
-<br class="hidden lg:block">
-<br class="hidden lg:block">
-<!-- PLANES -->
-
-<div class="px-[1rem]">
-   <div class="w-full">
-        <div class="flex gap-3">
-            <img src="assets/images/trebol.png" class="w-[3rem]" alt="">
-            <h2 class="text-secondary_dark font-bold text-[2rem]">PLANES</h2>
-        </div>
-        <br>
-        <br>
-        <div class="w-full flex flex-col lg:flex-row gap-5 justify-center items-center lg: items-start">
-            <div class="bg-[url('assets/images/card1.png')] bg-cover bg-center w-[90%] lg:w-[25rem] h-[25rem] flex flex-col items-center p-5 gap-5">
-                <img src="assets/images/plan1.webp" alt="Plan de spa individual" loading="lazy" class="w-[55%] h-[50%] lg:w-[50%] lg:h-[55%]">
-                <h3 class="text-bg font-semibold text-[1.5rem]">INDIVIDUAL</h3>
-                 <a routerLink="/planes" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150 shadow-xl cursor-pointer">CONOCE MAS</a>
-
-            </div>
-
-            <div class="bg-[url('assets/images/card2.png')] bg-cover bg-center w-[90%] lg:w-[25rem] h-[25rem] flex flex-col items-center p-5 gap-5">
-                <img src="assets/images/plan2.webp" alt="Plan de spa para parejas" loading="lazy" class="w-[55%] h-[50%] lg:w-[50%] lg:h-[55%]">
-                <h3 class="text-bg font-semibold text-[1.5rem]">PAREJA</h3>
-                 <a routerLink="/planes" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150 shadow-xl cursor-pointer">CONOCE MAS</a>
-            </div>
-
-            <div class="bg-[url('assets/images/card3.png')] bg-cover bg-center w-[90%] lg:w-[25rem] h-[25rem] flex flex-col items-center p-5 gap-5">
-                <img src="assets/images/plan3.webp" alt="Plan de spa grupal" loading="lazy" class="w-[55%] h-[50%] lg:w-[50%] lg:h-[55%]">
-                <h3 class="text-bg font-semibold text-[1.5rem]">GRUPO</h3>
-                 <a routerLink="/planes" class="bg-secondary px-10 py-3 text-bg hover:bg-secondary_dark transition-all ease-in duration-150 shadow-xl cursor-pointer">CONOCE MAS</a>
-            </div>
-
-        </div>
-        <br>
-        <br>
-        <!-- SERVICIOS -->
-         <div class="flex gap-3">
-            <img src="assets/images/hoja.png" class="w-[3rem]" alt="">
-            <h2 class="text-secondary_dark font-bold text-[2rem]">SERVICIOS</h2>
-        </div>
-        <br>
-        <br>
-        <br>
-        <div class="grid grid-cols-3 lg:grid-cols-7 gap-5">
-            <div class="flex flex-col items-center text-center cursor-pointer hover:scale-105 transition-all ease-in duration-150" *ngFor="let service of services">
-                <img src="{{service.route}}" alt="" class="w-12" loading="lazy">
-                <h3 class="text-primary_dark">{{service.name}}</h3>
-            </div>
-        </div>
-        <br>
-        <br>
-        <br>
-   </div> 
-
-
-
-
-</div>
-
-<!-- SOBRE NOSOTROS Y PREGUNTAS FRECUENTES -->
-<section class="px-[1rem] lg:px-[10rem] pb-16 flex flex-col gap-10">
-    <div class="flex flex-col gap-4">
-        <h2 class="text-secondary_dark font-bold text-[2rem]">SPA EN MEDELLÍN</h2>
-        <p class="text-primary_dark text-justify">
-            En Laurel Spa Medellín creamos experiencias de relajación para disfrutar solo, en pareja o en grupo.
-            Nuestros planes combinan jacuzzi privado, sauna, masajes terapéuticos y rituales con aromaterapia,
-            chocolate, piedras volcánicas y aceites esenciales, además de bebidas, copas de vino y decoración
-            especial para celebrar aniversarios, cumpleaños o cualquier ocasión.
-        </p>
-        <p class="text-primary_dark text-justify">
-            Estamos en el barrio Simón Bolívar de Medellín y atendemos todos los días, incluidos festivos,
-            de 8:00 a. m. a 9:00 p. m. Reserva tu plan por WhatsApp o regala una gift card.
-        </p>
-    </div>
-
-    <div class="flex flex-col gap-4">
-        <h2 class="text-secondary_dark font-bold text-[2rem]">PREGUNTAS FRECUENTES</h2>
-
-        <details class="bg-secondary_light p-4">
-            <summary class="cursor-pointer font-semibold text-primary">¿Cuál es el horario de atención?</summary>
-            <p class="text-primary_dark pt-3">Atendemos de lunes a domingo, incluidos festivos, de 8:00 a. m. a 9:00 p. m.</p>
-        </details>
-
-        <details class="bg-secondary_light p-4">
-            <summary class="cursor-pointer font-semibold text-primary">¿Dónde queda Laurel Spa?</summary>
-            <p class="text-primary_dark pt-3">En la Carrera 82A # 37B-5, barrio Simón Bolívar, Medellín, Colombia.</p>
-        </details>
-
-        <details class="bg-secondary_light p-4">
-            <summary class="cursor-pointer font-semibold text-primary">¿Cómo hago una reserva?</summary>
-            <p class="text-primary_dark pt-3">Escríbenos por WhatsApp al 310 494 8884 o al 322 747 6900. Te recomendamos reservar con anticipación y llegar 15 minutos antes de tu cita.</p>
-        </details>
-
-        <details class="bg-secondary_light p-4">
-            <summary class="cursor-pointer font-semibold text-primary">¿Qué planes tienen?</summary>
-            <p class="text-primary_dark pt-3">Tenemos planes individuales, para parejas y grupales. Puedes ver lo que incluye cada uno, su duración y su precio en la sección de <a routerLink="/planes" class="underline">planes</a>.</p>
-        </details>
-
-        <details class="bg-secondary_light p-4">
-            <summary class="cursor-pointer font-semibold text-primary">¿Qué medios de pago aceptan?</summary>
-            <p class="text-primary_dark pt-3">Bancolombia, Nequi, Daviplata y efectivo.</p>
-        </details>
-
-        <details class="bg-secondary_light p-4">
-            <summary class="cursor-pointer font-semibold text-primary">¿Puedo cancelar o cambiar la fecha de mi cita?</summary>
-            <p class="text-primary_dark pt-3">Sí, avisando con mínimo 24 horas de anticipación. El reagendamiento se puede hacer una sola vez, de lunes a jueves entre 8:00 a. m. y 3:00 p. m. Consulta todas las condiciones en nuestras <a routerLink="/politicas_reserva" class="underline">políticas de reserva</a>.</p>
-        </details>
-
-        <details class="bg-secondary_light p-4">
-            <summary class="cursor-pointer font-semibold text-primary">¿Tienen bonos o gift cards de regalo?</summary>
-            <p class="text-primary_dark pt-3">Sí. Puedes solicitar tu gift card por WhatsApp; el bono spa tiene una vigencia de 30 días a partir de su pago.</p>
-        </details>
-    </div>
+  </div>
 </section>
 
-<!-- HORARIOS -->
-<div class="w-full h-[35rem] lg:h-[40rem] bg-bg flex flex-col items-center" id="schedules">
-    <div class="bg-primary_dark w-full h-10">
+<!-- PLANES -->
+<section class="mx-auto max-w-site px-4 py-16 lg:px-8 lg:py-24">
+  <cc-section-heading
+    title="Nuestros planes"
+    subtitle="Elige cómo quieres vivir tu experiencia: en pareja, solo o con tu grupo."
+    iconSrc="assets/images/trebol.png"
+  />
+  <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    @for (card of categoryCards(); track card.category) {
+      <li>
+        <cc-plan-card
+          headingLevel="h3"
+          [name]="card.title"
+          [imageSrc]="card.imageSrc"
+          [imageAlt]="'Plan de spa ' + card.title.toLowerCase()"
+          [meta]="card.meta"
+          [price]="card.minPrice"
+          priceLabel="Desde"
+          [link]="['/planes']"
+          [queryParams]="card.queryParams"
+          [ctaLabel]="'Ver planes ' + card.title.toLowerCase()"
+        />
+      </li>
+    }
+  </ul>
+</section>
 
+<!-- SERVICIOS -->
+<section class="bg-secondary_light">
+  <div class="mx-auto max-w-site px-4 py-16 lg:px-8 lg:py-24">
+    <cc-section-heading
+      title="Servicios que puedes disfrutar"
+      subtitle="Cada plan combina varios de estos rituales."
+      iconSrc="assets/images/hoja.png"
+    />
+    <ul class="grid grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-5">
+      @for (service of services(); track service.name) {
+        <li class="flex flex-col items-center gap-2 text-center">
+          <img [src]="service.route" alt="" width="48" height="48" loading="lazy" class="h-12 w-12 object-contain" />
+          <span class="text-sm font-semibold text-primary_dark">{{ service.name }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- SOBRE NOSOTROS Y PREGUNTAS FRECUENTES -->
+<section class="mx-auto grid max-w-site gap-12 px-4 py-16 lg:grid-cols-[2fr_3fr] lg:px-8 lg:py-24">
+  <div>
+    <cc-section-heading title="Spa en Medellín" />
+    <div class="flex max-w-prose flex-col gap-4 text-primary_dark">
+      <p>
+        En Laurel Spa Medellín creamos experiencias de relajación para disfrutar solo, en pareja o en grupo.
+        Nuestros planes combinan jacuzzi privado, sauna, masajes terapéuticos y rituales con aromaterapia,
+        chocolate, piedras volcánicas y aceites esenciales, además de bebidas, copas de vino y decoración
+        especial para celebrar aniversarios, cumpleaños o cualquier ocasión.
+      </p>
+      <p>
+        Estamos en el barrio Simón Bolívar de Medellín y atendemos todos los días, incluidos festivos,
+        de 8:00 a. m. a 9:00 p. m. Reserva tu plan por WhatsApp o regala una gift card.
+      </p>
     </div>
-    <br>
-    <div class="bg-primary_dark w-full h-[35%] flex justify-center" id="bono">
-        <div class=" flex  justify-center w-[90%] lg:w-[45%] h-[60%]">
-            <div class="bg-primary_dark  w-[25%] lg:w-[20%] flex items-center justify-center">
-                <img src="assets/images/reloj.png" class="w-12 lg:w-[5rem]" alt="">
-            </div>
-            <div class="bg-primary_dark  w-[80%] lg:w-[80%]">
-                <div class="flex gap-10 justify-around w-full h-full items-center">
-                    <h2 class="text-bg font-semibold text-[0.9rem] lg:text-[1.2rem]">HORARIOS</h2>
+  </div>
 
-                    <div class="flex flex-col">
-                        <p class="text-bg text-[0.9rem] lg:text-[1.2rem]">LUNES A DOMINGOS Y FESTIVOS</p>
-                        <p class="text-bg text-[0.9rem] lg:text-[1.2rem] font-semibold">08:00 AM - 9:00PM</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <cc-faq title="Preguntas frecuentes">
+    <cc-faq-item question="¿Cuál es el horario de atención?">
+      Atendemos de lunes a domingo, incluidos festivos, de 8:00 a. m. a 9:00 p. m.
+    </cc-faq-item>
+    <cc-faq-item question="¿Dónde queda Laurel Spa?">
+      En la Carrera 82A # 37B-5, barrio Simón Bolívar, Medellín, Colombia.
+    </cc-faq-item>
+    <cc-faq-item question="¿Cómo hago una reserva?">
+      Escríbenos por WhatsApp al 310 494 8884 o al 322 747 6900. Te recomendamos reservar con anticipación y llegar 15 minutos antes de tu cita.
+    </cc-faq-item>
+    <cc-faq-item question="¿Qué planes tienen?">
+      Tenemos planes individuales, para parejas y grupales. Puedes ver lo que incluye cada uno, su duración y su precio en la sección de <a routerLink="/planes">planes</a>.
+    </cc-faq-item>
+    <cc-faq-item question="¿Qué medios de pago aceptan?">
+      Bancolombia, Nequi, Daviplata y efectivo.
+    </cc-faq-item>
+    <cc-faq-item question="¿Puedo cancelar o cambiar la fecha de mi cita?">
+      Sí, avisando con mínimo 24 horas de anticipación. El reagendamiento se puede hacer una sola vez, de lunes a jueves entre 8:00 a. m. y 3:00 p. m. Consulta todas las condiciones en nuestras <a routerLink="/politicas_reserva">políticas de reserva</a>.
+    </cc-faq-item>
+    <cc-faq-item question="¿Tienen bonos o gift cards de regalo?">
+      Sí. Puedes solicitar tu gift card por WhatsApp; el bono spa tiene una vigencia de 30 días a partir de su pago.
+    </cc-faq-item>
+  </cc-faq>
+</section>
 
-    </div>
-    <div class="bg-white h-[60%] w-full relative px-[1rem] lg:px-[15rem] flex justify-center flex-col items-center lg:items-start">
-        <img src="assets/images/regalo.webp" alt="Gift card de regalo Laurel Spa" loading="lazy" class="w-52 lg:w-[35rem] absolute  right-10 top-[-4rem]">
-        <div class="flex flex-col gap-5 mb-5 justify-center items-center lg:items-start">
-            <h2 class="text-primary_dark font-bold text-[2rem]">Gift Card</h2>
-            <p class="text-primary_dark">¿QUIERES DAR EL MEJOR REGALO?</p>
-        </div>
-
-        <a href="{{message}}" target="_blank" class="bg-secondary px-10 py-3 w-[20rem] lg:w-[20rem] text-bg hover:bg-secondary_dark transition-all ease-in duration-150 text-center">SOLICITALO POR WHATSAPP</a>
-        <img src="assets/images/fondo.png" alt="" loading="lazy" class="absolute w-[10%] left-0 ">
-    </div>
-    
-
-</div>
-
-<!-- NUEVA SEDE -->
-<br>
-<br class="hidden lg:block">
-<br class="hidden lg:block">
-<br class="hidden lg:block">
-<br class="hidden lg:block">
-<br class="hidden lg:block">
-<div class="flex flex-col w-full h-[75rem] gap-5">
-    <div class="flex w-[100%] items-center gap-2">
-        <div class="w-[20%] h-1 bg-primary_dark"></div>
-        <h2 class="text-primary_dark text-[1rem]  lg:text-[1.5rem]"> NUEVA SEDE MEDELLIN </h2>
-        <div class="w-[36.5%] lg:w-[64.5%] h-1 bg-secondary"></div>
+<!-- HORARIOS Y GIFT CARD -->
+<section id="schedules" class="bg-primary_dark text-bg">
+  <div class="mx-auto grid max-w-site items-center gap-12 px-4 py-16 lg:grid-cols-2 lg:px-8 lg:py-20">
+    <div class="flex items-center gap-6">
+      <img src="assets/images/reloj.png" alt="" width="80" height="80" loading="lazy" class="h-16 w-16 flex-none lg:h-20 lg:w-20" />
+      <div class="flex flex-col gap-1">
+        <h2 class="font-heading text-2xl font-bold">Horarios</h2>
+        <p class="text-lg">Lunes a domingo y festivos</p>
+        <p class="text-2xl font-semibold">8:00 a. m. – 9:00 p. m.</p>
+      </div>
     </div>
 
-    <div class="bg-[url('assets/images/nueva_bg.webp')] bg-cover bg-center h-[30rem] px-[10rem]">
-        <div class="flex flex-col lg:flex-row items-center justify-center gap-20 lg:gap-0 lg:justify-between h-full w-full">
-            <div class="flex gap-20">
-                <div class="flex flex-col items-center gap-3">
-                    <p class="text-secondary text-[1.9rem] font-bold">0</p>
-                    <p class="text-bg text-[1.5rem] font-semibold">Seguidores</p>
-                    <a href="https://www.facebook.com/laurelspamed/" target="_blank"><img src="assets/images/face.png" alt="Facebook de Laurel Spa" loading="lazy" class="w-20"></a>
-                </div>
-
-                <div class="flex flex-col items-center gap-3">
-                    <p class="text-secondary text-[1.9rem] font-bold">0</p>
-                    <p class="text-bg text-[1.5rem] font-semibold">Seguidores</p>
-                    <a href="https://www.instagram.com/laurelspamed/" target="_blank"><img src="assets/images/ig.png" alt="Instagram de Laurel Spa" loading="lazy" class="w-20"></a>
-                </div>
-            </div>
-            <a routerLink="/galeria" class="bg-primary px-10 py-3 w-[20rem] h-12 text-bg hover:bg-primary_dark transition-all ease-in duration-150 text-center">GALERIA DE IMAGENES</a>
-        </div>
+    <div id="bono" class="flex flex-col items-center gap-6 rounded bg-white p-6 text-primary_dark sm:flex-row lg:p-8">
+      <img src="assets/images/regalo.webp" alt="Gift card de regalo Laurel Spa" loading="lazy" class="h-auto w-48 flex-none" />
+      <div class="flex flex-col items-center gap-3 text-center sm:items-start sm:text-left">
+        <h2 class="font-heading text-2xl font-bold">Gift Card</h2>
+        <p>¿Quieres dar el mejor regalo? Te la enviamos en PDF, lista para regalar.</p>
+        <a ccButton variant="whatsapp" [href]="whatsappUrl" target="_blank" rel="noopener">Solicítala por WhatsApp</a>
+      </div>
     </div>
+  </div>
+</section>
 
-    <div class="flex w-[100%] items-center gap-2" id="ubication">
-        <div class="w-[70%] h-1 bg-primary_dark"></div>
-        <h2 class="text-primary_dark text-[1rem]  lg:text-[1.5rem]"> UBICACION </h2>
-        <div class="w-[25%] h-1 bg-secondary"></div>
+<!-- GALERÍA Y REDES -->
+<section class="relative isolate overflow-hidden">
+  <img src="assets/images/nueva_bg.webp" alt="" loading="lazy" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+  <div class="absolute inset-0 -z-10 bg-[color-mix(in_srgb,var(--laurel-green-dark)_72%,transparent)]"></div>
+  <div class="mx-auto flex max-w-site flex-col items-center gap-6 px-4 py-20 text-center lg:px-8 lg:py-28">
+    <cc-section-heading
+      title="Nueva sede en Medellín"
+      subtitle="Conoce nuestras instalaciones: jacuzzi privado, sauna y cabinas de masaje."
+      tone="inverse"
+      align="center"
+    />
+    <div class="flex flex-col items-center gap-4 sm:flex-row">
+      <a ccButton size="lg" routerLink="/galeria">Ver galería de fotos</a>
+      <cc-social-links [links]="socialLinks" size="lg" tone="inverse" />
     </div>
+  </div>
+</section>
 
-    <div class="w-full h-[500px]">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2352.312185968397!2d-75.60561009517299!3d6.245567567751703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44299c144f6d8f%3A0x2da18c0c4aede019!2zQ3JhLiA4MkEgIyAzN0ItNSwgU2ltw7NuIEJvbMOtdmFyLCBNZWRlbGzDrW4sIExhIEFtw6lyaWNhLCBNZWRlbGzDrW4sIEFudGlvcXVpYSwgQ29sb21iaWE!5e1!3m2!1ses-419!2sbr!4v1757295766306!5m2!1ses-419!2sbr" title="Mapa de ubicación de Laurel Spa Medellín" class="w-full h-[30rem]" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
-</div>
-
-
-<!-- DIRECCION -->
- <div class="w-full h-[20rem] bg-primary_dark">
-    <br>
-    <div class="flex w-[100%] items-center gap-2 mb-10">
-        <div class="w-[23%] h-1 bg-bg"></div>
-        <h2 class="text-bg text-[1rem]  lg:text-[1.5rem]">CONTACTO</h2>
-        <div class="w-[70%] h-1 bg-bg"></div>
+<!-- UBICACIÓN -->
+<section id="ubication" class="mx-auto grid max-w-site gap-8 px-4 py-16 lg:grid-cols-[1fr_2fr] lg:px-8 lg:py-24">
+  <div class="flex flex-col gap-4">
+    <cc-section-heading title="Ubicación" />
+    <address class="not-italic text-lg text-primary_dark">{{ contact.address }}</address>
+    <p class="text-primary_dark">{{ contact.hours }}</p>
+    <div class="flex flex-wrap gap-3">
+      <a ccButton [href]="contact.mapsUrl" target="_blank" rel="noopener">Cómo llegar</a>
+      <a ccButton variant="secondary" [href]="whatsappUrl" target="_blank" rel="noopener">Escríbenos</a>
     </div>
-
-    <div class=" lg:px-[10rem] flex items-center lg:gap-5">
-        <img src="assets/images/logo_blanco.png" alt="Laurel Spa Medellín" loading="lazy" class="w-[10rem] lg:w-[15rem]">
-        <div class="flex flex-col gap-3">
-            <div class="flex items-center gap-3"><img src="assets/images/wsp.png" class="w-5" alt="WhatsApp" loading="lazy"><span class="text-white">3227476900</span></div>
-            <div class="flex items-center gap-3"><img src="assets/images/wsp.png" class="w-5" alt="WhatsApp" loading="lazy"><span class="text-white">3104948884</span></div>
-            <div class="flex items-center gap-3"><img src="assets/images/ubicacion.png" class="w-6" alt="Dirección" loading="lazy"><address class="text-white not-italic">Carrera 82A # 37B-5, Simón Bolívar, Medellín, Colombia</address></div>
-        </div>
-    </div>
- </div>
+  </div>
+  <div class="aspect-[4/3] w-full overflow-hidden rounded bg-secondary_light lg:aspect-auto lg:min-h-[28rem]">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2352.312185968397!2d-75.60561009517299!3d6.245567567751703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e44299c144f6d8f%3A0x2da18c0c4aede019!2zQ3JhLiA4MkEgIyAzN0ItNSwgU2ltw7NuIEJvbMOtdmFyLCBNZWRlbGzDrW4sIExhIEFtw6lyaWNhLCBNZWRlbGzDrW4sIEFudGlvcXVpYSwgQ29sb21iaWE!5e1!3m2!1ses-419!2sbr!4v1757295766306!5m2!1ses-419!2sbr"
+      title="Mapa de ubicación de Laurel Spa Medellín"
+      class="h-full w-full border-0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+</section>

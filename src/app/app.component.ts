@@ -1,36 +1,55 @@
-import { Component, Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
-import { isPlatformBrowser, CommonModule } from '@angular/common';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { whatsappMsgDefault } from '../pages/planes/const';
-import { WhatsappApiComponent } from './components/whatsapp-api/whatsapp-api.component';
-import { Router } from '@angular/router';
+import { Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { IsActiveMatchOptions, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { filter, map } from 'rxjs';
+import { ButtonComponent, PromoModalComponent, SocialLinksComponent, WhatsappButtonComponent } from '@c-code/c-code-fw/ui';
+import { SiteFooterComponent } from './components/site-footer/site-footer.component';
+import { NAV_LINKS } from './nav-links';
+import { CONTACT, PROMO, SOCIAL_LINKS, WHATSAPP_URL } from './site.config';
+
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet, RouterLink, WhatsappApiComponent],
+  imports: [
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
+    ButtonComponent,
+    WhatsappButtonComponent,
+    PromoModalComponent,
+    SocialLinksComponent,
+    SiteFooterComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'medellin-spa';
-  message: string = whatsappMsgDefault;
-  showModal: boolean = true;
+  readonly whatsappUrl = WHATSAPP_URL;
+  readonly contact = CONTACT;
+  readonly socialLinks = SOCIAL_LINKS;
+  readonly promo = PROMO;
+  readonly navLinks = NAV_LINKS;
+  readonly menuOpen = signal(false);
+  /** Inicio, Horarios y Ubicación comparten la ruta "/": se distinguen por el fragmento. */
+  readonly exactMatch: IsActiveMatchOptions = { paths: 'exact', fragment: 'exact', queryParams: 'ignored', matrixParams: 'ignored' };
+  readonly prefixMatch: IsActiveMatchOptions = { paths: 'subset', fragment: 'ignored', queryParams: 'ignored', matrixParams: 'ignored' };
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router ) {}
+  private readonly router = inject(Router);
+  private readonly url = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects)
+    ),
+    { initialValue: this.router.url }
+  );
 
-  menuToggle() {
-    if (isPlatformBrowser(this.platformId)) {
-      const main = document.getElementById("menu");
-      const btn = document.getElementById("menu_btn");
-      main?.classList.toggle("hidden");
-    }
+  /** The plan details page has its own booking bar, so the floating button would cover it. */
+  readonly showFloatingWhatsapp = computed(() => !/^\/planes\/[^/?#]+/.test(this.url()));
+
+  toggleMenu() {
+    this.menuOpen.update((open) => !open);
   }
 
-  toMain() {
-    this.router.navigate(['/']);
+  closeMenu() {
+    this.menuOpen.set(false);
   }
-
-  closeModal() {
-    this.showModal = false;
-  }
-
 }

@@ -1,0 +1,50 @@
+<footer class="bg-primary_dark text-bg">
+  <div class="mx-auto grid max-w-site gap-10 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4 lg:px-8 lg:py-16">
+    <div class="flex flex-col gap-4">
+      <img src="assets/images/logo_blanco.png" alt="Laurel Spa Medellín" width="284" height="165" loading="lazy" class="h-auto w-40" />
+      <p class="text-sm opacity-90">Spa en Medellín para parejas, individuales y grupos: jacuzzi privado, sauna y masajes.</p>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <h2 class="text-lg font-semibold">Contacto</h2>
+      <ul class="flex flex-col gap-2 text-sm">
+        @for (phone of contact.phones; track phone.value) {
+          <li>
+            <a [href]="phoneHref(phone)" [attr.target]="phone.whatsapp ? '_blank' : null" rel="noopener" class="inline-flex min-h-11 items-center gap-2 hover:underline">
+              @if (phone.whatsapp) {
+                <img src="assets/images/wsp.png" alt="" width="16" height="16" class="h-4 w-4" />
+                <span class="sr-only">WhatsApp</span>
+              } @else {
+                <span aria-hidden="true">☎</span>
+                <span class="sr-only">Teléfono</span>
+              }
+              {{ phone.label }}
+            </a>
+          </li>
+        }
+        <li><a [href]="'mailto:' + contact.email" class="inline-flex min-h-11 items-center hover:underline">{{ contact.email }}</a></li>
+      </ul>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <h2 class="text-lg font-semibold">Visítanos</h2>
+      <address class="text-sm not-italic">
+        <a [href]="contact.mapsUrl" target="_blank" rel="noopener" class="hover:underline">{{ contact.address }}</a>
+      </address>
+      <p class="text-sm">{{ contact.hours }}</p>
+    </div>
+
+    <div class="flex flex-col gap-3">
+      <h2 class="text-lg font-semibold">Navega</h2>
+      <ul class="grid grid-cols-2 gap-x-4 text-sm">
+        @for (link of navLinks; track link.label) {
+          <li><a [routerLink]="link.path" [fragment]="link.fragment" class="inline-flex min-h-11 items-center hover:underline">{{ link.label }}</a></li>
+        }
+      </ul>
+      <cc-social-links [links]="socialLinks" tone="inverse" />
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <p class="mx-auto max-w-site px-4 py-4 text-xs opacity-80 lg:px-8">© {{ year }} Laurel Spa Medellín. Todos los derechos reservados.</p>
+  </div>
+</footer>

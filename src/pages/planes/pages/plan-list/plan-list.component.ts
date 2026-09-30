@@ -1,50 +1,32 @@
-import { Component, DestroyRef, effect, inject } from '@angular/core';
-import { PlanService } from '../../services/plan.service';
-import { PlanDto } from '../../dto/plan-dto';
-import { CategoryType } from '../../types/category-type';
-import {
-  ElementActiveDirective,
-  ElementActiveService,
-  ElementStatusType,
-  ElementToggleService,
-} from '@c-code/c-code-fw';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { FilterPlansRequest } from '../../types/filterPlans-request';
-import { PlanCardComponent } from '../../components/plan-card/plan-card.component';
-import { FilterPlanFormComponent } from '../../components/filter-plan-form/filter-plan-form.component';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { SeoService } from '../../../../app/seo/seo.service';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs';
+import { PlanCatalogComponent, PlanCatalogService, PlanCategory, SeoService } from '@c-code/c-code-fw/ui';
+import { WHATSAPP_URL } from '../../../../app/site.config';
+import { CATEGORY_SLUGS, categoryFromSlug } from '../../category-slugs';
+
 @Component({
   selector: 'app-plan-list',
-  imports: [
-    PlanCardComponent,
-    FilterPlanFormComponent,
-    FormsModule,
-    ElementActiveDirective,
-    CommonModule,
-  ],
+  imports: [PlanCatalogComponent],
   templateUrl: './plan-list.component.html',
-  styleUrl: './plan-list.component.css',
-  providers: [ElementActiveService, ElementToggleService],
 })
 export class PlanListComponent {
-  private planService: PlanService = inject(PlanService);
-  private destroyRef: DestroyRef = inject(DestroyRef);
-  private elementToggle: ElementToggleService = inject(ElementToggleService);
-  private seo: SeoService = inject(SeoService);
-  public plans: PlanDto[] = [];
-  public categorySelected: CategoryType = CategoryType.Individual;
-  public CategoryType = CategoryType;
-  public filterByPlanName: string = '';
-  public ElementStatustype = ElementStatusType;
-  public filterStatus: ElementStatusType = ElementStatusType.HIDDEN;
-  public category : string = "Individual"
-  constructor() {
-    effect(
-      () => (this.filterStatus = this.elementToggle.elementStatusToggle())
-    );
-  }
+  private catalog = inject(PlanCatalogService);
+  private seo = inject(SeoService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
+
+  readonly whatsappUrl = WHATSAPP_URL;
+  /** `null` mientras cargan los planes, para que el catálogo muestre tarjetas de carga. */
+  readonly plans = toSignal(this.catalog.getPlans(), { initialValue: null });
+  readonly services = toSignal(this.catalog.getAdditionalServices(), { initialValue: [] });
+  readonly priceRanges = toSignal(this.catalog.getPriceRanges(), { initialValue: [] });
+
+  /** La categoría vive en la URL (?categoria=pareja); sin ella se muestran los planes de pareja. */
+  private readonly slug = toSignal(this.route.queryParamMap.pipe(map((params) => params.get('categoria'))));
+  readonly category = computed(() => categoryFromSlug(this.slug()) ?? PlanCategory.Couple);
+
   ngOnInit() {
     this.seo.update({
       title: 'Planes de spa en Medellín: parejas, individuales y grupales | Laurel Spa',
@@ -52,54 +34,14 @@ export class PlanListComponent {
         'Conoce los planes de Laurel Spa Medellín: experiencias para parejas, individuales y grupales con jacuzzi privado, sauna, masajes y rituales. Precios y reservas por WhatsApp.',
       path: '/planes',
     });
-    this.getPlans(this.categorySelected);
   }
 
-  selectCategory(category: CategoryType) {
-    this.categorySelected = category;
-    this.getPlans(this.categorySelected);
-
-    switch(category){
-      case CategoryType.Individual:
-        this.category = "Individual";
-        break;
-      case CategoryType.Couple:
-        this.category = "Pareja";
-        break;
-      case CategoryType.Group:
-        this.category = "Grupal";
-        break;
-    }
-  }
-
-  getPlans(category: CategoryType) {
-    this.planService
-      .getPlansByCategory(category)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((plans: PlanDto[]) => {
-        this.plans = plans;
-        console.log(plans);
-      });
-  }
-
-  filterPlans(filter: FilterPlansRequest) {
-    this.planService
-      .getPlansByFilter(filter)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((plans) => {
-        this.plans = plans;
-      });
-  }
-
-  onFilterByPlanName() {
-    this.planService
-      .getPlansByName(this.filterByPlanName)
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((plans) => {
-        this.plans = plans;
-      });
-  }
-  openFilterForm() {
-    this.elementToggle.toggleByElementStatusType(ElementStatusType.SHOW);
+  onCategoryChange(category: PlanCategory | number | null) {
+    if (category === null) return;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { categoria: CATEGORY_SLUGS[category] },
+      replaceUrl: true,
+    });
   }
 }

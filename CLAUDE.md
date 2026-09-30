@@ -12,33 +12,37 @@ Marketing/catalog site for **Laurel Spa (Medellín, Colombia)**. Angular 19 (sta
 - `npm run build` — production build to `dist/medellin-spa/` (prerender is enabled in `angular.json`, so all routes are rendered at build time)
 - `npm run serve:ssr:medellin-spa` — run the built Express SSR server (`src/server.ts`)
 - `npm test` — Karma + Jasmine unit tests (needs Chrome)
-- Single spec: `npx ng test --include=src/pages/planes/services/plan.service.spec.ts`
+- Single spec: `npx ng test --include=src/pages/planes/pages/plan-list/plan-list.component.spec.ts`
+- Specs get their providers (HttpClient, router, catalog, SEO) from `TEST_PROVIDERS` in `src/test-providers.ts`.
 
 No lint or e2e setup exists.
 
 ## Architecture
 
-- **Pages live in `src/pages/`, not `src/app/`.** `src/app/` holds only the root shell (`app.component` with the nav bar, a launch popup modal, and the floating WhatsApp button), app config, and `app.routes.ts`. Every route lazy-loads a standalone component from `src/pages/` via `loadComponent`.
-- Routes: `''` (main), `planes` (with children `''` → plan list and `detalles` → plan details), `galeria`, `politicas_reserva`.
+- **Pages live in `src/pages/`, not `src/app/`.** `src/app/` holds the root shell (`app.component`: fixed header with top bar, nav and mobile menu, the promo popup and the floating WhatsApp button, hidden on plan details), the shared footer (`components/site-footer`), `nav-links.ts`, `site.config.ts`, app config and `app.routes.ts`. `<main>` carries the top padding for the fixed header (`pt-16 lg:pt-[7.5rem]`), so pages must not add their own offset. Every route lazy-loads a standalone component from `src/pages/` via `loadComponent`.
+- Routes: `''` (main), `planes` (with children `''` → plan list and `:slug` → plan details), `galeria`, `politicas_reserva`.
+- **UI components come from `@c-code/c-code-fw/ui`** (the owner's npm library, source in `C:/dev/c-code/c-code-fw`): `cc-plan-catalog`, `cc-plan-details`, `cc-plan-card`, `cc-gallery`, `cc-page-banner`, `cc-section-heading`, `cc-info-item`, `cc-notice`, `cc-faq`/`cc-faq-item`, `cc-social-links`, `cc-whatsapp-button`, `cc-promo-modal` and the `ccButton` directive for every call to action. Pages only load data, set SEO and pass props; choose the look with component inputs (`variant`, `tone`, `size`, `appearance`…). Fix component bugs in the library, not with CSS overrides here.
+- Page layout pattern: `<div class="mx-auto max-w-site px-4 py-8 lg:px-8 lg:py-12">` with a `cc-page-banner` (the page `<h1>`) or, on the home page, sections with `cc-section-heading`.
+- **Theme = `src/styles.css`, the single source of colors and fonts.** It defines the brand variables (`--laurel-*`) and maps them to the library roles (`--cc-accent`, `--cc-on-accent`, `--cc-heading`…). `tailwind.config.js` reads the same variables for `primary`, `secondary`, `secondary_text`, `bg`, `stone`, and maps `fontSize` (`text-sm`…`text-4xl`) to the library's `--cc-text-*` scale (`tokens.css` is loaded in `angular.json` → styles). Change colors in `styles.css`, never with hex values in templates. Tailwind opacity modifiers (`bg-primary/50`) do not work with these variables; use `bg-[color-mix(in_srgb,var(--laurel-green-dark)_70%,transparent)]`.
+- Headings use El Messiri (`font-heading`), body text Albert Sans. Gold used as text must be `text-secondary_text` (#7a5c17); plain `secondary` fails contrast on white.
 - **Data layer = JSON in `src/assets/data/`**, fetched with `HttpClient` from `assets/data/...`:
-  - `plans.json` — plans; `category` is the numeric value of the `CategoryType` enum (`0` Individual, `1` Couple, `2` Group, `3` None), and `additionalServicesId` references IDs in `additionals.json`.
-  - `additionals.json` — add-on services, which `PlanService.getPlans()` joins into `plan.additionalServices` (via `forkJoin`).
+  - `plans.json` — plans (durations in sentence case, e.g. "2 horas 20 minutos"); `category` is the numeric value of the `PlanCategory` enum (from `@c-code/c-code-fw/ui`) (`0` Individual, `1` Couple, `2` Group, `3` None), and `additionalServicesId` references IDs in `additionals.json`.
+  - `additionals.json` — add-on services, which `PlanCatalogService.getPlans()` (from the library) joins into `plan.additionalServices`.
   - `priceRanges.json` — used by the filter form.
   - `services.json` — icon and name list shown on the main page (`DataService`).
   - To add or change plans or prices, edit these JSON files. No code changes are needed.
-- **All filtering happens on the client** in `PlanService` (`src/pages/planes/services/plan.service.ts`). Each query re-fetches and re-joins the JSON.
-- **Plan details live at `/planes/:slug`**, where the slug comes from the plan name via `planSlug()` in `plan.service.ts` (for example `PLAN FLOR DE LOTTO 3` → `plan-flor-de-lotto-3`). `PlanDetailsComponent` loads the plan with `getPlanBySlug`. Unknown slugs redirect to `/planes`. Renaming a plan changes its URL.
-- **SEO:** each page calls `SeoService.update()` (`src/app/seo/seo.service.ts`) in `ngOnInit` to set the title, meta description, canonical URL, and Open Graph/Twitter tags. `SITE_URL` in that file holds the production domain. The business JSON-LD (`DaySpa`: address, hours, phones) is static in `src/index.html`. Plan details add a per-plan `Service` JSON-LD.
+- **/planes keeps the category in the URL** (`?categoria=individual|pareja|grupal`, see `src/pages/planes/category-slugs.ts`); without it, the couples category shows. The home category cards link there.
+- **All filtering happens on the client**, inside `cc-plan-catalog`. `PlanCatalogService` requests each JSON file once and caches it. Category counts are computed from `plans.json`.
+- **Plan details live at `/planes/:slug`**, where the slug comes from the plan name via `planSlug()` from `@c-code/c-code-fw/ui` (for example `PLAN FLOR DE LOTTO 3` → `plan-flor-de-lotto-3`). `PlanDetailsComponent` loads the plan with `PlanCatalogService.getPlanBySlug`. Unknown slugs redirect to `/planes`. Renaming a plan changes its URL.
+- **SEO:** each page calls `SeoService.update()` (from `@c-code/c-code-fw/ui`, configured with `provideSeo()` in `app.config.ts`) in `ngOnInit` to set the title, meta description, canonical URL, and Open Graph/Twitter tags. `SITE_URL` in `src/app/site.config.ts` holds the production domain. The business JSON-LD (`DaySpa`: address, hours, phones) is static in `src/index.html`. Plan details add a per-plan `Service` JSON-LD with `SeoService.setJsonLd()`.
 - **Parameterized routes are only prerendered if they are listed** in `prerender-routes.txt` (referenced from `angular.json`). That file and `public/sitemap.xml` are static lists of every page, including one URL per plan. When you add, remove, or rename a plan in `plans.json`, update both.
-- The WhatsApp contact URL (phone and default message) is the single constant `whatsappMsgDefault` in `src/pages/planes/const.ts`. The root nav, the floating button, and plan details all reuse it.
-- `@c-code/c-code-fw` (a third-party package) provides `ElementToggleService` / `ElementActiveDirective`, used in the plan list to show or hide the filter form and mark the active category.
-- Gallery and carousels use `ngx-lightbox`, `ngx-slick-carousel`, and `swiper`.
+- **Contact data lives in `src/app/site.config.ts`:** `CONTACT` (phones, email, address, hours, maps link), `SOCIAL_LINKS`, `WHATSAPP_URL` (general message), `planWhatsappUrl(plan)` (booking message with the plan name and price, used by plan details) and `PROMO` (popup image and message; change `rememberKey` for each new promotion so it shows again to people who closed the old one).
 
 ## Conventions / gotchas
 
-- Code runs on the server during SSR and prerendering. Guard any direct `document`/`window` access with `isPlatformBrowser` (see `AppComponent.menuToggle`).
-- Tailwind theme colors are defined in `tailwind.config.js`: `primary`, `primary_light`, `primary_dark`, `secondary`, `secondary_light`, `secondary_dark`, `bg`. The default font is Albert Sans, loaded in `src/styles.css`. Use these tokens instead of raw hex values.
+- Code runs on the server during SSR and prerendering. Guard any direct `document`/`window` access with `isPlatformBrowser`.
 - Static images and icons live in `src/assets/` (served at `assets/...`). `public/` holds the favicon, `robots.txt`, and `sitemap.xml`.
 - Large decorative PNGs are referenced as `.webp` (the original `.png` files are still in the repo). Photos stay `.jpeg` because they double as `og:image` previews.
 - Keep one `<h1>` per page. Tailwind's preflight resets heading sizes, so changing a heading level doesn't change how it looks.
-- The project lives in a OneDrive folder. `UNKNOWN: unknown error, read` build errors come from OneDrive fetching files from the cloud, not from the code. Rerunning the build fixes them.
+- The project lives in `C:/dev/medellin-spa` (moved out of OneDrive, which caused hung builds).
+- To try unpublished library changes, build and pack the library (`npx ng build core && cd dist/core && npm pack` in `c-code-fw`) and run `npm install --no-save <path>/c-code-c-code-fw-<version>.tgz` here. `--no-save` keeps `package.json` pointing at the published version; bump it only after publishing.
