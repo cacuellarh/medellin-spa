@@ -1,28 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, map, of } from 'rxjs';
 import { GalleryComponent, GalleryImage, PageBannerComponent, SeoService } from '@c-code/c-code-fw/ui';
 
-/** Leyendas de las fotos de assets/images/galery/<n>.jpeg, en orden. */
-const CAPTIONS = [
-  'Amigas brindando en el jacuzzi con espuma',
-  'Chocolaterapia en espalda',
-  'Relajación en el jacuzzi con cascada',
-  'Masaje relajante con velas',
-  'Pareja brindando con vino en la sala de descanso',
-  'Brindis de pareja con copas de vino',
-  'Masaje en pareja con dos terapeutas',
-  'Ritual de vela caliente para pareja',
-  'Bambuterapia para pareja',
-  'Chocolaterapia en pareja',
-  'Pareja en el jacuzzi con espuma y vino',
-  'Sauna para dos',
-  'Brindis con champaña en el jacuzzi',
-  'Celebración grupal en el jacuzzi con espuma',
-  'Pareja con copas de vino junto al jacuzzi',
-  'Pareja en la piscina climatizada',
-  'Pareja en batas de baño en la zona húmeda',
-  'Brindis junto al jacuzzi con espuma',
-];
-
+/** Photos and captions come from the CMS (`assets/data/gallery.json`, written before the build). */
 @Component({
   selector: 'app-galery',
   standalone: true,
@@ -32,11 +14,15 @@ const CAPTIONS = [
 export class GaleryComponent {
   private seo: SeoService = inject(SeoService);
 
-  public images: GalleryImage[] = CAPTIONS.map((caption, i) => ({
-    src: `assets/images/galery/${i + 1}.jpeg`,
-    caption,
-    alt: `${caption} en Laurel Spa Medellín`,
-  }));
+  readonly images = toSignal(
+    inject(HttpClient)
+      .get<GalleryImage[]>('assets/data/gallery.json')
+      .pipe(
+        map((photos) => photos.map((photo) => ({ ...photo, alt: `${photo.caption} en Laurel Spa Medellín` }))),
+        catchError(() => of([] as GalleryImage[]))
+      ),
+    { initialValue: [] as GalleryImage[] }
+  );
 
   ngOnInit(): void {
     this.seo.update({

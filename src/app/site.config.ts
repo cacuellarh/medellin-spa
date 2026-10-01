@@ -41,11 +41,3 @@ export function planWhatsappUrl(plan: Plan): string {
   );
 }
 
-/** Promoción del popup. Cambia la imagen, el texto y la clave cuando cambie la promo. */
-export const PROMO = {
-  imageSrc: 'assets/images/pop.jpeg',
-  imageAlt: 'Promoción Amor y Amistad: Plan Chocolate Imperial por $149.900 para dos personas',
-  /** Cambiar la clave hace que el popup vuelva a mostrarse a quien cerró la promo anterior. */
-  rememberKey: 'amor-amistad-chocolate-imperial',
-  whatsappUrl: whatsappUrl(WHATSAPP_PHONE, 'Hola Laurel Spa, quiero la promoción del Plan Chocolate Imperial de Amor y Amistad.'),
-};

@@ -1,11 +1,21 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { IsActiveMatchOptions, NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { filter, map } from 'rxjs';
-import { ButtonComponent, PromoModalComponent, SocialLinksComponent, WhatsappButtonComponent } from '@c-code/c-code-fw/ui';
+import { catchError, filter, map, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import {
+  ButtonComponent,
+  isPromoRunning,
+  PromoConfig,
+  promoRememberKey,
+  PromoModalComponent,
+  SocialLinksComponent,
+  WhatsappButtonComponent,
+  whatsappUrl,
+} from '@c-code/c-code-fw/ui';
 import { SiteFooterComponent } from './components/site-footer/site-footer.component';
 import { NAV_LINKS } from './nav-links';
-import { CONTACT, PROMO, SOCIAL_LINKS, WHATSAPP_URL } from './site.config';
+import { CONTACT, SOCIAL_LINKS, WHATSAPP_PHONE, WHATSAPP_URL } from './site.config';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +36,21 @@ export class AppComponent {
   readonly whatsappUrl = WHATSAPP_URL;
   readonly contact = CONTACT;
   readonly socialLinks = SOCIAL_LINKS;
-  readonly promo = PROMO;
+  /** The popup as edited in the CMS (`assets/data/promo.json`, written before the build). */
+  private readonly promoConfig = toSignal(
+    inject(HttpClient).get<PromoConfig>('assets/data/promo.json').pipe(catchError(() => of(null))),
+    { initialValue: null }
+  );
+  /** The popup when it should show today: switched on, with an image and inside its dates. */
+  readonly promo = computed(() => {
+    const promo = this.promoConfig();
+    if (!promo || !isPromoRunning(promo)) return null;
+    return {
+      ...promo,
+      rememberKey: promoRememberKey(promo),
+      whatsappUrl: promo.message ? whatsappUrl(WHATSAPP_PHONE, promo.message) : WHATSAPP_URL,
+    };
+  });
   readonly navLinks = NAV_LINKS;
   readonly menuOpen = signal(false);
   /** Inicio, Horarios y Ubicación comparten la ruta "/": se distinguen por el fragmento. */

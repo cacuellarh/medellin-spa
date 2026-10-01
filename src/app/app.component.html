@@ -89,14 +89,17 @@
   <cc-whatsapp-button [href]="whatsappUrl" label="Escríbenos por WhatsApp" />
 }
 
-<!-- Popup de promoción: se abre a los 6 s y no vuelve a aparecer en 7 días si se cierra. -->
-<cc-promo-modal
-  [autoOpen]="true"
-  [delayMs]="6000"
-  [rememberKey]="promo.rememberKey"
-  [imageSrc]="promo.imageSrc"
-  [imageAlt]="promo.imageAlt"
-  [link]="promo.whatsappUrl"
-  ctaLabel="Quiero esta promoción"
-  [ctaHref]="promo.whatsappUrl"
-/>
+<!-- Popup de promoción: se edita en el CMS (cuándo aparece, cada cuánto y entre qué fechas). -->
+@if (promo(); as promo) {
+  <cc-promo-modal
+    [autoOpen]="true"
+    [delayMs]="promo.delaySeconds * 1000"
+    [rememberKey]="promo.rememberKey"
+    [rememberDays]="promo.repeatDays"
+    [imageSrc]="promo.imageSrc"
+    [imageAlt]="promo.imageAlt"
+    [link]="promo.whatsappUrl"
+    [ctaLabel]="promo.ctaLabel"
+    [ctaHref]="promo.ctaLabel ? promo.whatsappUrl : ''"
+  />
+}
